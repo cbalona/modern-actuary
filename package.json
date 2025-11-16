@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build:kit": "vite build",
-		"build": "pnpm run clean &&bash build.sh",
+		"build": "pnpm run clean && bash build.sh",
 		"clean": "rm -rf .svelte-kit build",
 		"preview": "vite preview",
 		"format": "biome format --write",
@@ -25,6 +25,7 @@
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.17",
 		"@types/mdast": "^4.0.4",
+		"@types/node": "^24.10.1",
 		"@types/unist": "^3.0.3",
 		"gray-matter": "^4.0.3",
 		"lucide-svelte": "^0.553.0",

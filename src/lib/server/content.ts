@@ -171,7 +171,7 @@ async function getAllJournalEntries(): Promise<JournalEntry[]> {
 	const postDirs = fs.readdirSync(JOURNAL_DIR);
 
 	const entries = await Promise.all(
-		postDirs.map(async (dirName) => {
+		postDirs.map(async (dirName: string) => {
 			const dirPath = path.join(JOURNAL_DIR, dirName);
 			const filePath = path.join(dirPath, "index.md");
 
@@ -189,8 +189,11 @@ async function getAllJournalEntries(): Promise<JournalEntry[]> {
 
 	// Filter out any null values (for items that were not valid post directories).
 	allJournalEntries = entries.filter(
-		(entry): entry is JournalEntry => entry !== null,
+		(entry: JournalEntry | null): entry is JournalEntry => entry !== null,
 	);
+	if (!allJournalEntries) {
+		allJournalEntries = [];
+	}
 	return allJournalEntries;
 }
 /**
