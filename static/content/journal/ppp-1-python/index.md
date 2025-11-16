@@ -1,7 +1,10 @@
 ---
 title: "Python Preferred Practice 1: Python Version Management"
-description: "Choosing the right Python version and using pyenv to manage installations across different projects seamlessly."
+description: "Choosing the right Python version and using uv to manage installations across different projects seamlessly."
 date: "2023-07-17"
+changelog:
+  - date: "2025-11-16"
+    description: "Changed `pyenv` to `uv`"
 ---
 
 It can be daunting to learn a new programming language, especially if its your first
@@ -91,49 +94,46 @@ made, so I am undecided on that. But I would probably wait a few years.
 
 ## "Cool cool cool. Is there an easy way to manage this?"
 
-Yes there is. My preferred way is using [`pyenv`](https://github.com/pyenv/pyenv).
+Yes there is. My preferred way is using [`uv`](https://docs.astral.sh/uv/).
 
-What is `pyenv`? It is essentially software to manage your python versions. It is as
-simple as:
+What is `uv`? It is a Python package and project manager that provides plenty of really
+useful functionality (something I plan to expand on in future posts). But the part I
+want to focus on here is its ability to manage multiple Python versions on your
+computer, and let you easily switch between them.
 
 ```bash
-pyenv install 3.11.4
+uv python install 3.11
 ```
 
-Now you have Python 3.11.4. But wait, you are working on a project where one of the
-packages you require works only on Python 3.10! Before `pyenv` you might have downlaoded
-and installed Python 3.10 alongside 3.11. But that's asking for trouble. When you run
-Python, which version does your system use? If you run `pip`, which version gets the
-package installed? It's not clear!
+Now you have the latest `patch` version of Python 3.11. But wait, you are working on a
+project where one of the packages you require works only on Python 3.10! Before `uv` you
+might have downloaded and installed Python 3.10 alongside 3.11. But that's asking for
+trouble. When you run Python, which version does your system use? If you run `pip`,
+which version gets the package installed? It's not clear!
 
 Maybe you uninstall 3.11? Then you have to reset all your system settings to point to
 3.10 and not 3.11. And some code you wrote uses features only in 3.11! I guess another
 option is to be explicit about which Python version to use every time you run a file.
 But that's going to be horribly annoying!
 
-Or, you just use `pyenv`:
+Or, you just use `uv`:
 
 ```bash
-pyenv install 3.10.12
+uv python install 3.10
 cd /project/folder/
-pyenv local 3.10.12
+uv python pin 3.10
 ```
 
-Now, that folder always uses 3.10.12. New version comes out? Easy!
+A small `.python-version` file is created in the project folder. Now, that folder always uses 3.10. New version comes out? Easy!
 
 ```bash
-pyenv uninstall 3.10.12
-pyenv update
-pyenv install 3.10.13
+uv python upgrade
 ```
 
 New version! No hassle.
 
 It is fantastic and I strongly recommend using it to manage your Python installations
 outright. No more `python: command not found` errors anymore.
-
-Just be sure you install the correct version for your system! That's
-[`pyenv-win`](https://github.com/pyenv-win/pyenv-win) for the Windows users.
 
 ## Some extra remarks
 
@@ -162,7 +162,7 @@ only the essentials. I also like the freedom of choosing what I put on my sandwi
 how I cut it.
 
 Granted, several years back, things were trickier if you did it yourself. But lately, it
-is massively easier to just use `pyenv` and manage things myself. Hopefully I'll
+is massively easier to just use `uv` and manage things myself. Hopefully I'll
 demonstrate the advantages in the next few articles.
 
 If you are a die hard Anaconda / `conda` fan and you refuse to give my preferred
@@ -190,7 +190,5 @@ main driver, then I doubt you are considering Windows or Mac!
 
 Spoiler alert: I prefer Linux for programming, but I prefer Windows for everything else.
 Truth is, they can co-exist very nicely without dual-booting your system (where you have
-both Windows and Linux installed, which is messy). You guessed it: I use Windows
+both Windows and Linux installed, which can be messy). You guessed it: I use Windows
 Subsystem for Linux (WSL) for all my programming.
-
-I will release the Python Preferred Practice (PPP) last, most likely. So stay tuned!

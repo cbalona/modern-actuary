@@ -2,6 +2,9 @@
 title: "Python Preferred Practice 3: Project Automation"
 description: "Automating common Python project tasks, like dependency management, environment setup, and data pipelines, using Makefiles for efficiency and reproducibility."
 date: "2023-08-01"
+archived: true
+deprecated: true
+deprecation_note: "This post has been deprecated. With the introduction of `uv` for managing Python versions and dependencies, much of the automation discussed here can be simplified. I recommend checking out [PPP 1](./ppp-1-python/) and [PPP 2](./ppp-2-dependency-management/) for updated practices. There is still place for project automation in more complex projects. In these cases I now use `justfiles`, which I will discuss in a future post."
 ---
 
 In PPP 2 I discussed how I prefer to do dependency management within Python. I prefer simple and lightweight. This meant using basic libraries like `virtualenv` and `pip-tools` over heavier approaches such as Poetry or Conda. This bare bones approach also led to quite a few commands to be memorised and used over and over. If you are like me you don't like to do repetitive tasks. You would rather automate them.

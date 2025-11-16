@@ -43,6 +43,15 @@ const remarkRewriteImagePath: Plugin<[{ slug: string }]> = (options) => {
 };
 
 /**
+ * Creates a unified processor for simple note content (e.g., deprecation notes).
+ * @returns {import('unified').Processor} A configured unified processor instance.
+ */
+const noteProcessor = unified()
+	.use(remarkParse)
+	.use(remarkRehype)
+	.use(rehypeStringify);
+
+/**
  * Creates a unified processor to transform markdown into HTML.
  * @param {string} slug - The slug of the content being processed, used for path rewriting.
  * @returns {import('unified').Processor} A configured unified processor instance.
@@ -92,6 +101,8 @@ export const journalEntryMetadataSchema = v.object({
 	pinned: v.optional(v.boolean(), false),
 	archived: v.optional(v.boolean(), false),
 	changelog: v.optional(v.array(changelogEntrySchema)),
+	deprecated: v.optional(v.boolean(), false),
+	deprecation_note: v.optional(v.pipe(v.string(), v.trim())),
 });
 
 export type JournalEntryMetadata = v.InferOutput<
@@ -102,6 +113,7 @@ export interface JournalEntry {
 	slug: string;
 	metadata: JournalEntryMetadata;
 	contentHTML: string;
+	deprecationNoteHTML?: string;
 	isRecentlyUpdated?: boolean;
 }
 
@@ -119,10 +131,23 @@ async function compileJournalEntryFromFile(
 	const { data, content } = matter(rawContent);
 
 	const metadata = v.parse(journalEntryMetadataSchema, data);
+
+	// Derive the 'updated' date from the changelog if it exists.
+	if (metadata.changelog && metadata.changelog.length > 0) {
+		const latestChangelogDate = new Date(
+			Math.max(...metadata.changelog.map((entry) => entry.date.getTime())),
+		);
+		metadata.updated = latestChangelogDate;
+	}
+
 	const processor = createProcessor(slug);
 	const contentHTML = (await processor.process(content)).toString();
 
-	return { slug, metadata, contentHTML };
+	const deprecationNoteHTML = metadata.deprecation_note
+		? (await noteProcessor.process(metadata.deprecation_note)).toString()
+		: undefined;
+
+	return { slug, metadata, contentHTML, deprecationNoteHTML };
 }
 
 let allJournalEntries: JournalEntry[] | null = null;

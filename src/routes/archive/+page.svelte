@@ -24,7 +24,13 @@ const { data }: { data: PageData } = $props();
         <li>
           <a href="/journal/{entry.slug}" class="group block">
             <h2 class="font-semibold group-hover:text-accent text-2xl transition-colors">
+              {#if entry.metadata.deprecated}
+                <span class="rounded-full bg-orange-200 px-3 py-1 align-middle text-sm font-semibold uppercase tracking-wider text-orange-800">
+                  Deprecated
+                </span>
+              {/if}
               {entry.metadata.title}
+              
             </h2>
             <p class="mt-2 font-sans text-ink-muted text-sm">
               <time datetime={entry.metadata.date.toISOString()}>
