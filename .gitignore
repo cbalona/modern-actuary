@@ -1,0 +1,32 @@
+# Node.js Dependencies
+node_modules/
+
+# Build Artifacts
+build/
+dist/
+.DS_Store
+
+# SvelteKit
+.svelte-kit/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Logs & Reports
+*.log
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+coverage/
+
+# Editor & IDE Configuration
+.vscode/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+llm/

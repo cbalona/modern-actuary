@@ -1,0 +1,107 @@
+/* src/app.css */
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap");
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+	--font-serif: "Lora", serif;
+	--font-sans: "Karla", sans-serif;
+
+	--color-paper: #f8f4e8;
+	--color-ink: #3a3a3a;
+	--color-ink-muted: #7a7a7a;
+	--color-accent: #8c4a3c;
+}
+
+body {
+	background-color: var(--color-paper);
+	color: var(--color-ink);
+	font-family: var(--font-serif);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom prose styles for markdown content */
+.prose {
+	--tw-prose-body: var(--color-ink);
+	--tw-prose-headings: var(--color-ink);
+	--tw-prose-lead: var(--color-ink-muted);
+	--tw-prose-links: var(--color-accent);
+	--tw-prose-bold: var(--color-ink);
+	--tw-prose-counters: var(--color-ink-muted);
+	--tw-prose-bullets: var(--color-ink-muted);
+	--tw-prose-hr: #e0ddd3;
+	--tw-prose-quotes: var(--color-ink);
+	--tw-prose-quote-borders: #e0ddd3;
+	--tw-prose-captions: var(--color-ink-muted);
+
+	font-family: var(--font-serif);
+	font-size: 1.125rem;
+	line-height: 1.75;
+
+	h1,
+	h2,
+	h3 {
+		font-weight: 600;
+		letter-spacing: -0.025em;
+	}
+
+	a {
+		text-decoration-thickness: 1px;
+		text-underline-offset: 2px;
+		transition: all 0.2s ease-in-out;
+	}
+
+	a:hover {
+		color: var(--color-ink);
+		text-decoration-color: var(--color-accent);
+	}
+
+	table {
+		@apply block w-full overflow-x-auto text-sm;
+	}
+
+	img {
+		@apply block mx-auto;
+	}
+
+	code {
+		counter-reset: line;
+	}
+
+	pre {
+		max-width: 88ch;
+		background-color: #fbf9f4;
+
+		@apply text-sm border border-gray-300 rounded-lg p-5;
+	}
+
+	pre > code {
+		counter-reset: line;
+		color: #3a3a3a;
+	}
+
+	code > [data-line]::before {
+		counter-increment: line;
+		content: counter(line);
+
+		@apply mr-4 inline-block w-4 text-right text-gray-300;
+	}
+
+	.changelog {
+		@apply font-sans text-sm text-ink-muted mt-12 pt-6 border-t border-gray-200;
+	}
+
+	.changelog h2 {
+		@apply text-base text-ink-muted font-semibold tracking-normal mt-0 mb-4;
+	}
+
+	.changelog ul {
+		@apply text-ink-muted list-none p-0;
+	}
+
+	.changelog li {
+		@apply text-ink-muted mb-2;
+	}
+}
