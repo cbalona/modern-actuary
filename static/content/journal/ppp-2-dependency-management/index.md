@@ -244,11 +244,7 @@ in their virtual environment.
 You can find out more about the `uv add` command
 [here](https://docs.astral.sh/uv/reference/cli/#uv-add).
 
-## This is starting to become a lot of commands (or at least it was before uv)
-
-Yes, yes it is. And if you are like me, you don't want to remember them all, let along
-type them all out, time and time again. I have a solution to that. But, I will leave it
-for PPP 3: Project Automation.
+## Closing thoughts
 
 What I have shown in this PPP, is my preferred way to set up a Python project with
 dependency management. There are many other ways to do it, and many other tools to use.
