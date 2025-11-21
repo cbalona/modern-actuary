@@ -120,7 +120,8 @@ def calcRes(l):
 
 Looks just like the first improved example! And all I had to do was run `uvx ruff format filename.py`. No thinking, no debating, no arguing. Just let the tool do its thing.
 
-> Side note: `uvx` is a command line tool that comes with `uv`, the Python package and project manager we discussed in [PPP-2: Project Management](./ppp-2-dependency-management). It makes it dead easy to run tools like `ruff` without having to install them globally or manage virtual environments. If you haven't checked out `uv` yet, I highly recommend you do so.
+> [!NOTE]
+> `uvx` is a command line tool that comes with `uv`, the Python package and project manager we discussed in [PPP-2: Project Management](./ppp-2-dependency-management). It makes it dead easy to run tools like `ruff` without having to install them globally or manage virtual environments. If you haven't checked out `uv` yet, I highly recommend you do so.
 
 ## The benefits are more than just looks
 

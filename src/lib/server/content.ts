@@ -7,6 +7,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
+import { remarkAlert } from "remark-github-blockquote-alert";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import type { Plugin } from "unified";
@@ -59,6 +61,8 @@ const noteProcessor = unified()
 function createProcessor(slug: string) {
 	return unified()
 		.use(remarkParse)
+		.use(remarkGfm) // GitHub Flavored Markdown
+		.use(remarkAlert) // Alert blockquotes
 		.use(remarkRewriteImagePath, { slug })
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeSlug)

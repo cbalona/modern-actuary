@@ -89,6 +89,44 @@ body {
 		@apply mr-4 inline-block w-4 text-right text-gray-300;
 	}
 
+	.data-footnote-backref {
+		@apply no-underline text-accent hover:underline;
+	}
+
+	section[data-footnotes] {
+		@apply mt-12 pt-6 border-t border-gray-200 text-sm text-ink-muted;
+	}
+
+	section[data-footnotes] h2 {
+		@apply sr-only; /* Hide the "Footnotes" heading visually */
+	}
+
+	section[data-footnotes] ol {
+		@apply list-decimal ml-4 space-y-2;
+	}
+
+	.markdown-alert {
+		@apply my-6 rounded-r-lg border-l-4 p-4 text-base;
+		background-color: #fbf9f4;
+	}
+
+	.markdown-alert-title {
+		@apply mb-2 flex items-center gap-2 font-bold uppercase tracking-wider text-xs;
+	}
+
+	/* Remove default margin from the last paragraph in an alert */
+	.markdown-alert > *:last-child {
+		@apply mb-0;
+	}
+
+	/* NOTE styling */
+	.markdown-alert-note {
+		border-color: var(--color-accent);
+	}
+	.markdown-alert-note .markdown-alert-title {
+		color: var(--color-accent);
+	}
+
 	.changelog {
 		@apply font-sans text-sm text-ink-muted mt-12 pt-6 border-t border-gray-200;
 	}
