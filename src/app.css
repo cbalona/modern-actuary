@@ -1,4 +1,4 @@
-/* src/app.css */
+/* == Setup & Config == */
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap");
 
 @import "tailwindcss";
@@ -14,6 +14,7 @@
 	--color-accent: #8c4a3c;
 }
 
+/* == Base Styles == */
 body {
 	background-color: var(--color-paper);
 	color: var(--color-ink);
@@ -22,8 +23,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom prose styles for markdown content */
+/* == Typography (Prose) Scope == */
 .prose {
+	/* -- Theme Overrides -- */
 	--tw-prose-body: var(--color-ink);
 	--tw-prose-headings: var(--color-ink);
 	--tw-prose-lead: var(--color-ink-muted);
@@ -36,10 +38,12 @@ body {
 	--tw-prose-quote-borders: #e0ddd3;
 	--tw-prose-captions: var(--color-ink-muted);
 
+	/* -- Root Typography -- */
 	font-family: var(--font-serif);
 	font-size: 1.125rem;
 	line-height: 1.75;
 
+	/* -- Elements -- */
 	h1,
 	h2,
 	h3 {
@@ -51,11 +55,11 @@ body {
 		text-decoration-thickness: 1px;
 		text-underline-offset: 2px;
 		transition: all 0.2s ease-in-out;
-	}
 
-	a:hover {
-		color: var(--color-ink);
-		text-decoration-color: var(--color-accent);
+		&:hover {
+			color: var(--color-ink);
+			text-decoration-color: var(--color-accent);
+		}
 	}
 
 	table {
@@ -66,6 +70,7 @@ body {
 		@apply block mx-auto;
 	}
 
+	/* -- Code Blocks -- */
 	code {
 		counter-reset: line;
 	}
@@ -73,73 +78,74 @@ body {
 	pre {
 		max-width: 88ch;
 		background-color: #fbf9f4;
-
 		@apply text-sm border border-gray-300 rounded-lg p-5;
-	}
 
-	pre > code {
-		counter-reset: line;
-		color: #3a3a3a;
+		& > code {
+			counter-reset: line;
+			color: #3a3a3a;
+		}
 	}
 
 	code > [data-line]::before {
 		counter-increment: line;
 		content: counter(line);
-
 		@apply mr-4 inline-block w-4 text-right text-gray-300;
 	}
 
+	/* -- Feature: Footnotes -- */
 	.data-footnote-backref {
 		@apply no-underline text-accent hover:underline;
 	}
 
 	section[data-footnotes] {
 		@apply mt-12 pt-6 border-t border-gray-200 text-sm text-ink-muted;
+
+		h2 {
+			@apply sr-only;
+		}
+
+		ol {
+			@apply list-decimal ml-4 space-y-2;
+		}
 	}
 
-	section[data-footnotes] h2 {
-		@apply sr-only; /* Hide the "Footnotes" heading visually */
-	}
-
-	section[data-footnotes] ol {
-		@apply list-decimal ml-4 space-y-2;
-	}
-
+	/* -- Feature: Markdown Alerts -- */
 	.markdown-alert {
 		@apply my-6 rounded-r-lg border-l-4 p-4 text-base;
 		background-color: #fbf9f4;
+
+		.markdown-alert-title {
+			@apply mb-2 flex items-center gap-2 font-bold uppercase tracking-wider text-xs;
+		}
+
+		& > *:last-child {
+			@apply mb-0;
+		}
+
+		/* Note Variant */
+		&.markdown-alert-note {
+			border-color: var(--color-accent);
+
+			.markdown-alert-title {
+				color: var(--color-accent);
+			}
+		}
 	}
 
-	.markdown-alert-title {
-		@apply mb-2 flex items-center gap-2 font-bold uppercase tracking-wider text-xs;
-	}
-
-	/* Remove default margin from the last paragraph in an alert */
-	.markdown-alert > *:last-child {
-		@apply mb-0;
-	}
-
-	/* NOTE styling */
-	.markdown-alert-note {
-		border-color: var(--color-accent);
-	}
-	.markdown-alert-note .markdown-alert-title {
-		color: var(--color-accent);
-	}
-
+	/* -- Feature: Changelog -- */
 	.changelog {
 		@apply font-sans text-sm text-ink-muted mt-12 pt-6 border-t border-gray-200;
-	}
 
-	.changelog h2 {
-		@apply text-base text-ink-muted font-semibold tracking-normal mt-0 mb-4;
-	}
+		h2 {
+			@apply text-base text-ink-muted font-semibold tracking-normal mt-0 mb-4;
+		}
 
-	.changelog ul {
-		@apply text-ink-muted list-none p-0;
-	}
+		ul {
+			@apply text-ink-muted list-none p-0;
+		}
 
-	.changelog li {
-		@apply text-ink-muted mb-2;
+		li {
+			@apply text-ink-muted mb-2;
+		}
 	}
 }
