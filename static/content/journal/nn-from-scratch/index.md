@@ -2,7 +2,7 @@
 title: "A Basic Neural Network from Scratch"
 description: "Implementing the basic building block of neural networks—the perceptron—using only pure Python and Numpy."
 date: "2022-04-22"
-archived: true
+archived: false
 ---
 
 Deep learning and neural networks have been the driving force behind the recent hype in AI. Recent advances in computing power and data availability have allowed neural networks to perform amazing tasks such as producing human-like text ([GPT-3](https://openai.com/blog/gpt-3-apps/)) or create images from basic descriptions ([DALL-E](https://openai.com/blog/dall-e/)).

@@ -2,7 +2,7 @@
 title: "I'm an Actuary: What is Git and do I need to use it?"
 description: "A guide for actuaries on understanding Git and GitHub, its role in collaborative version control, and when it becomes essential for code-based actuarial work."
 date: "2022-04-18"
-archived: true
+archived: false
 ---
 
 If you are an actuary with an interest in applying data science to your work, you have probably heard numerous words that everyone says you need to know. Words such as git, Docker, tensorflow, cross-validation, etc. You may have found yourself overwhelmed with all these new things to learn and not know where to start. Well, hopefully, I can help with some of that. This one is about Git.

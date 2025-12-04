@@ -2,7 +2,7 @@
 title: "I'm an Actuary: What is Docker and do I need to use it?"
 description: "A practical guide for actuaries to understand containerization, what Docker is, and whether it’s necessary for traditional valuation, isolated data science, or complex application deployment."
 date: "2021-07-09"
-archived: true
+archived: false
 ---
 
 If you are an actuary with an interest in applying data science to your work, you have probably heard numerous words that everyone says you need to know. Words such as git, Docker, tensorflow, cross-validation, etc. You may have found yourself overwhelmed with all these new things to learn and not know where to start. Well, hopefully, I can help with some of that. This one is about Docker.

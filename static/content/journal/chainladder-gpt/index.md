@@ -2,7 +2,7 @@
 title: "ChainladderGPT: Large Language Reserving"
 description: "An experimental approach to actuarial reserving, testing GPT-3.5 and GPT-4's ability to complete claims development triangles by treating them as 'numeric sentences'."
 date: "2023-07-03"
-archived: true
+archived: false
 ---
 
 Here is a fun thought I had the other day: ChatGPT is a conversational model. But, in addition to deep meaningful conversations (DMCs), it can also complete things. So... can it complete a triangle?

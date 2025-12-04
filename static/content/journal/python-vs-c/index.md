@@ -2,7 +2,7 @@
 title: "Why use Python if C is faster?"
 description: "Exploring why Python remains the language of choice for data science and machine learning despite lower-level languages like C being inherently faster."
 date: "2022-05-03"
-archived: true
+archived: false
 ---
 
 This is a really common question or comment I receive when demonstrating data science or machine learning in Python.
