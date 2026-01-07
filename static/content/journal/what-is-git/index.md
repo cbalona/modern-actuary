@@ -74,11 +74,11 @@ That is, at a very basic level, what Git is. It provides the tools to manage and
 
 ### Quick aside: Does Git = GitHub?
 
-No. It is important to understand that Git itself is a software used to manage source code. Wherase GitHub is a central *hub* for code **repositories**. I will break this down a bit more.
+No. It is important to understand that Git itself is a software used to manage source code. Wherase GitHub is a central _hub_ for code **repositories**. I will break this down a bit more.
 
 In order to manage versions of your code automatically, you need to install the Git software. This software runs on your computer and automates some of the tasks like comparing code, pulling code, pushing code, branching, merging, etc. You can save the code anywhere on your computer.
 
-Now, if someone else wants code on your computer, it is difficult for them to fetch it. You could email it, or put it on a flash drive, but that is painfully manual. Instead, websites like GitHub exist to store code in central *repositories* that your teammates can access. Much like the network drives you likely store your files on in your company, but built to work directly with git.
+Now, if someone else wants code on your computer, it is difficult for them to fetch it. You could email it, or put it on a flash drive, but that is painfully manual. Instead, websites like GitHub exist to store code in central _repositories_ that your teammates can access. Much like the network drives you likely store your files on in your company, but built to work directly with git.
 
 Other types of version control software exists, such as Mercurial, but Git is by far the most popular. Other repository hosting websites like GitHub also exist, for example, BitBucket. But again, GitHub is most popular.
 
@@ -116,7 +116,7 @@ Although, it won't matter much whether you use BitBucket or GitHub, they both wo
 
 **Code editor based:**
 
-I personally use VS Code, so this one seemed great to me: 
+I personally use VS Code, so this one seemed great to me:
 
 [https://www.digitalocean.com/community/tutorials/how-to-use-git-integration-in-visual-studio-code](https://www.digitalocean.com/community/tutorials/how-to-use-git-integration-in-visual-studio-code)
 
@@ -128,7 +128,7 @@ I thought I'd add a quick tip on learning a new technology.
 
 I cannot stress this enough. With programming, data science, and in fact most if not all things, passive learning will not help you. Get involved, get your hands dirtly, and struggle through the tricky bits. It will be tough, it will be time consuming, but that is how you learn long lasting skills.
 
-Don't fight yourself either. *You have time.* Take the time and enjoy the journey.
+Don't fight yourself either. _You have time._ Take the time and enjoy the journey.
 
 How long did it take me to learn how to build this website? Over two years. And in that time I went through many ups and downs. I'd spend hours on the weekends contorting my brain to understand these things, restarting projects, rebuilding, failing, and trying again. Eventually, I did it. And althought at times it was tough, I did enjoy it.
 

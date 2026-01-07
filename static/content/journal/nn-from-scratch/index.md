@@ -121,17 +121,15 @@ So, we know that at a basic level, a neural network is just multiplying inputs b
 
 ## How do we train a neural network? How does it learn?
 
-We train a neural network by starting with a random guess for **m** and **b**. We then *feed-forward* our inputs through the network to calculate our prediction for **y**. Below, I will only feed-forward the first input.
+We train a neural network by starting with a random guess for **m** and **b**. We then _feed-forward_ our inputs through the network to calculate our prediction for **y**. Below, I will only feed-forward the first input.
 
 ```python
 m = 5
 b = 10
 
-
 def feedforward(x, m, b):
     y = x * m + b
     return y
-
 
 y_pred = feedforward(x[0], m, b)  # first input only
 y_pred
@@ -141,7 +139,7 @@ y_pred
 array([98.93169381])
 ```
 
-When we compare this to the true value of *y* (which is 233), we are quite far off the true value. We know why we are wrong: our weight (**m**) is too low, and so is our bias (**b**). We only know this because we have already fitted a linear regression, so we have the benefit of foresight. In practice, we won't know **m**, **b**, or any of the thousands of weights and biases, and neither will the neural network. So, we need a way for the neural network to figure out how wrong it is. To do this, we can look at the error:
+When we compare this to the true value of _y_ (which is 233), we are quite far off the true value. We know why we are wrong: our weight (**m**) is too low, and so is our bias (**b**). We only know this because we have already fitted a linear regression, so we have the benefit of foresight. In practice, we won't know **m**, **b**, or any of the thousands of weights and biases, and neither will the neural network. So, we need a way for the neural network to figure out how wrong it is. To do this, we can look at the error:
 
 ```python
 error = y_pred - y[0]
@@ -163,7 +161,6 @@ def loss(y, y_pred):
     se = ((y - y_pred) ** 2).sum()
     return se
 
-
 print(f"MSE (loss): {loss(y[0], y_pred):.4f}")
 ```
 
@@ -171,7 +168,7 @@ print(f"MSE (loss): {loss(y[0], y_pred):.4f}")
 MSE (loss): 17974.3107
 ```
 
-Using this loss, the network now has an ideaof how bad its prediction is. Knowing how bad it is, it then needs to change its weight and bias to be better so that it can reduce the loss. But, how should it change the weight and bias? *We* know it should increase both, because *we know* they are too low. But the network doesn't know that.
+Using this loss, the network now has an ideaof how bad its prediction is. Knowing how bad it is, it then needs to change its weight and bias to be better so that it can reduce the loss. But, how should it change the weight and bias? _We_ know it should increase both, because _we know_ they are too low. But the network doesn't know that.
 
 To find out, the network will calculate its gradient vector (gradient). Basically, the derivative of the loss with respect to the weight and bias:
 
@@ -181,13 +178,13 @@ where
 
 <img src="https://latex.codecogs.com/svg.image?L&space;=&space;(y_{pred}&space;-&space;y)^2&space;=&space;(mx&plus;b&space;-&space;y)^2" />
 
-Often, this derivative can be very complicated. In our case it is not. But, in practice it will be. To address this, neural networks use a process called *back-propogation* to calculate the gradient vector.
+Often, this derivative can be very complicated. In our case it is not. But, in practice it will be. To address this, neural networks use a process called _back-propogation_ to calculate the gradient vector.
 
-*Back-propogation* is just applying the chain rule we are familiar with from calculus.
+_Back-propogation_ is just applying the chain rule we are familiar with from calculus.
 
 <img src="https://latex.codecogs.com/svg.image?\begin{matrix}\frac{d&space;\mathbf{L}}{d&space;\mathbf{m}}=\frac{d&space;\mathbf{L}}{d&space;\mathbf{y_{pred}}}&space;\cdot&space;\frac{d&space;\mathbf{y_{pred}}}{d&space;\mathbf{m}}\\\frac{d&space;\mathbf{L}}{d&space;\mathbf{b}}=\frac{d&space;\mathbf{L}}{d&space;\mathbf{y_{pred}}}&space;\cdot&space;\frac{d&space;\mathbf{y_{pred}}}{d&space;\mathbf{b}}\end{matrix}" />
 
-We start from the last output (the loss, **L**), and we take derivatives going *backwards* and multiply. So next will be the derivative of *y_pred*.
+We start from the last output (the loss, **L**), and we take derivatives going _backwards_ and multiply. So next will be the derivative of _y_pred_.
 
 This gradient will tell the neural network how sensitive the output is to the weight and bias. Using this, the network will adjust its weight and bias to minimize the loss.
 
@@ -204,7 +201,6 @@ def backpropogate(y_pred, y, x):
 
     return dLdm, dLdb
 
-
 dLdm, dLdb = backpropogate(y_pred, y[0], x[0])
 
 print(f"dLdm: {dLdm[0]:.4f}; dLdb: {dLdb[0]:.4f}")
@@ -214,7 +210,7 @@ print(f"dLdm: {dLdm[0]:.4f}; dLdb: {dLdb[0]:.4f}")
 dLdm: -4769.1686; dLdb: -268.1366
 ```
 
-Our gradient is negative. This means we need to *increase* our weights.
+Our gradient is negative. This means we need to _increase_ our weights.
 
 Why?
 
@@ -264,7 +260,7 @@ Same problem. Our adjustments, although smaller, are way too large.
 
 This brings us to a key issue with neural networks, and gradient descent specifically.
 
-Gradient descent is the process we just used to adjust our weights. We calculated the gradient, and moved into the direction that minimised our loss (we used our *gradient* to *descend* down our parabolic loss function to the minimum loss).
+Gradient descent is the process we just used to adjust our weights. We calculated the gradient, and moved into the direction that minimised our loss (we used our _gradient_ to _descend_ down our parabolic loss function to the minimum loss).
 
 But, it is very sensitive to the data. In our example above, we were waaaaay up the left side of our loss function, so the gradient was huge and our adjustment was massive. We shot waaay up the right side of the loss function. If we continue like this, our gradients will explode and we will never find the minimum.
 
@@ -321,7 +317,6 @@ for j in range(10000):
     m = m - 0.001 * np.array(gradient_m).mean()
     b = b - 0.001 * np.array(gradient_b).mean()
 
-
 print(f"m: {m:.4f}; b: {b:.4f}")
 ```
 
@@ -376,7 +371,7 @@ for i, learning_rate in enumerate(learning_rates):
 
     ax[i].plot(x_plot * m_plot + b_plot, (x_plot * m_plot + b_plot - y_plot) ** 2)
     ax[i].plot(y_preds, losses, marker="o", c="r", linestyle="dashed", label=f"learning rate: {learning_rate}")
-    
+
     ax[i].legend()
 ```
 
@@ -391,4 +386,4 @@ I hope this short article sheds some light on the basic ideas of neural networks
 - Add another weight and bias (this is now moving closer to a neural network, the two perceptrons would form the hidden layer). See the impact. Consider the regression formula now. What is the difference? What does the new regression formula mean? Does it have any advantages over just one weight and bias.
 - Add another input and rethink what is happening. What does the regression mean now?
 
-If you'd like to see a more advanced neural network implemented in numpy only, refer to the [Tryangle](https://github.com/casact/tryangle) source code and have a look at the *ensemble* module.
+If you'd like to see a more advanced neural network implemented in numpy only, refer to the [Tryangle](https://github.com/casact/tryangle) source code and have a look at the _ensemble_ module.

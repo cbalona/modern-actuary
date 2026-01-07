@@ -45,6 +45,7 @@ df = pd.DataFrame(X, columns=["Column 1", "Column 2", "Column 3"])
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -240,6 +241,7 @@ data["Hour"] = pd.to_datetime(data["Hour"], format="%H:%M").dt.hour
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>

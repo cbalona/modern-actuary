@@ -24,7 +24,7 @@ Python on my computer. Which is not as immediately obvious as it might seem.
 
 You may be thinking exactly that: "Uh, just download it from the Python website and
 install it? Simple?"
-    
+
 Yes, that is simple. And it works most of the time. Until it doesn't. What does that
 mean? See, those new to programming or computer software in general may think that
 making sure they have the latest and greatest version is all they need to do. In most
@@ -73,7 +73,7 @@ packages like `pandas` for example, you know that if the **MAJOR** unit changes,
 things will be changing majorly. `Pandas` did this very recently, from a major of 1 to a
 major of 2. Have a look at the [release
 notes](https://pandas.pydata.org/docs/dev/whatsnew/v2.0.0.html) to get a feel of how
-things change, particularly the "*Backwards incompatible API changes*" section. Thats
+things change, particularly the "_Backwards incompatible API changes_" section. Thats
 the key with a major change, old code most likely won't work with the new version.
 
 Then there is the `MINOR` item. As suggested, minor changes that won't break older code
@@ -156,7 +156,7 @@ liked it. And I never liked needing to download gigabytes of software to write a
 kilobyte script, and having all that software hang around. Also, it's really focused on
 data science, so if you aren't doing much of that work, its not really for you.
 
-I much preferred managing Python myself and creating my own *virtual environments*
+I much preferred managing Python myself and creating my own _virtual environments_
 (don't worry if that sounds foreign to you, that's the next one I am tackling), with
 only the essentials. I also like the freedom of choosing what I put on my sandwich, and
 how I cut it.

@@ -42,7 +42,7 @@ def calcRes(l):
             f = 0.8
         else:
             f = 1.2
-        
+
         y = c[0] * f * (1.05 ** c[2])
         x = x + y
     return x
@@ -91,15 +91,15 @@ Don't bother writing your own style guide. Formatting works because of consisten
 
 The official style guide for Python is [PEP 8](https://peps.python.org/pep-0008/). It covers a whole lot of things, from indentation to naming conventions to line length. It is a great place to start. Click that link and you will find a really long list of formatting rules. Now you may be thinking: "This is crazy! This is creating so much more work; I have to study a style guide, remember all the rules, and then apply them every time I write code."
 
-Actually, adopting a style guide will *save* you time. Because you will never have to think about formatting again (and if you never did before, you certainly won't need to start now). Automation exists, and we can use tools to automatically format our code for us.
+Actually, adopting a style guide will _save_ you time. Because you will never have to think about formatting again (and if you never did before, you certainly won't need to start now). Automation exists, and we can use tools to automatically format our code for us.
 
 ## Black: the opinionated formatter
 
-[`Black`](https://black.readthedocs.io/en/stable/) is a PEP 8 *compliant* code formatter for Python. And it is an opinionated formatter. Compliant means it follows the rules of PEP 8. Opinionated means it makes its own decisions about how to format code, and it sticks strongly to them. Sometimes, you don't get to choose.
+[`Black`](https://black.readthedocs.io/en/stable/) is a PEP 8 _compliant_ code formatter for Python. And it is an opinionated formatter. Compliant means it follows the rules of PEP 8. Opinionated means it makes its own decisions about how to format code, and it sticks strongly to them. Sometimes, you don't get to choose.
 
 Now, there are two camps in the world: those who want freedom of choice, and those who see the value in not having to choose. `Black` is for the latter camp. `Black` takes your code and reformats it to its own carefully crafted style. You can control a few things, but generally, you should just let it do its thing.
 
-The best way to use `Black` is through something called [`ruff`](https://docs.astral.sh/ruff/formatter/). Remember when I spoke about `uv`? Well, the same guys that made `uv` also made `ruff`, which is a *linter* and *formatter*. Don't worry about what a linter is just yet; we will get to that soon. For now, just know that `ruff` can format your code according to `Black`'s rules, and it can do so before you blink.
+The best way to use `Black` is through something called [`ruff`](https://docs.astral.sh/ruff/formatter/). Remember when I spoke about `uv`? Well, the same guys that made `uv` also made `ruff`, which is a _linter_ and _formatter_. Don't worry about what a linter is just yet; we will get to that soon. For now, just know that `ruff` can format your code according to `Black`'s rules, and it can do so before you blink.
 
 Let's apply `ruff` to our earlier examples. Here is the first messy code block after being formatted by `ruff`:
 

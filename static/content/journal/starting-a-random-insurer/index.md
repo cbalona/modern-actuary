@@ -115,7 +115,7 @@ class Policy():
         self.ID = ID # Policies need an ID to identify them in a database
         self.sum_insured = sum_insured
         self.premium = premium
-        
+
     def simulate_claims(self):
         self.n_claims = poisson.rvs(mu=POISSON_MEAN) # Generate number of claims
         # Generate claim costs for the n_claims:
@@ -153,7 +153,7 @@ def simulate_company(n_policies):
     # Simulate claims for each policy sold
     for policy_id, policy in policy_db.items():
         policy.simulate_claims()
-        
+
     return policy_db
 
 policy_db = simulate_company(N_POLICIES)
@@ -171,20 +171,20 @@ Now, our policies are saved in a dictionary, which makes it a little bit difficu
 import pandas as pd
 
 def migrate_policy_db(policy_db):
-    
+
     # Define the columns of the table
     ids = []
     sums_insured = []
     premiums = []
     n_claims = []
-    
+
     # Fetch the values for the columns
     for policy_id, policy in policy_db.items():
         ids.append(policy.ID)
         sums_insured.append(policy.sum_insured)
         premiums.append(policy.premium)
         n_claims.append(policy.n_claims)
-        
+
     # Slap it all into a dataframe
     df = pd.DataFrame({
         'policy_id': ids,
@@ -192,7 +192,7 @@ def migrate_policy_db(policy_db):
         'premium': premiums,
         'n_claims': n_claims,
     })
-    
+
     return df
 
 policy_df = migrate_policy_db(policy_db)
@@ -212,6 +212,7 @@ policy_df
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -306,27 +307,26 @@ policy_df
 <p>1000 rows × 4 columns</p>
 </div>
 
-
 And then, we need a claims database:
 
 ```python
 def migrate_claims_db(policy_db):
-    
+
     # Define the columns of the table
     policy_ids = []
     claim_ids = []
     claim_costs = []
-    
+
     # Fetch the values for the columns
     for policy_id, policy in policy_db.items():
         for claim_id, claim_cost in policy.claims.items():
             policy_ids.append(policy_id)
             claim_ids.append(claim_id)
             claim_costs.append(claim_cost)
-            
+
     # Slap it all into a dataframe
     df = pd.DataFrame({'policy_id': policy_ids, 'claim_id': claim_ids, 'claim_cost': claim_costs})
-            
+
     return df
 
 claim_df = migrate_claims_db(policy_db)
@@ -346,6 +346,7 @@ claim_df
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -440,7 +441,7 @@ def underwriting_result(policy_df, claim_df):
     underwriting_result = policy_df['premium'].sum() - claim_df['claim_cost'].sum()
 
     print(f"Underwriting Profit / Loss: R {underwriting_result:,.2f}")
-    
+
     return
 
 underwriting_result(policy_df, claim_df)
@@ -467,7 +468,7 @@ The amount of anger they are feeling will likely impact how long they hammer awa
 ```python
 ExAngerModifier = {
     1: 0.5,
-    2: 1, 
+    2: 1,
     3: 1.5
 }
 ```
@@ -481,11 +482,11 @@ class Policy():
         self.sum_insured = sum_insured
         self.premium = premium
         self.ex_partner_anger = ex_partner_anger
-        
+
     def simulate_claims(self):
-        
+
         beta_a = BETA_A * ExAngerModifier[self.ex_partner_anger] # Modify for anger
-        
+
         self.n_claims = poisson.rvs(mu=POISSON_MEAN)
         self.claims = {
             claim_id:beta.rvs(a=beta_a, b=BETA_B, size=1)[0] * self.sum_insured for claim_id, n in enumerate(range(self.n_claims))
@@ -498,9 +499,9 @@ Okay, great. Now we can generate claims with a given ex-partner anger level. But
 N_POLICIES = 1000
 
 def simulate_company(n_policies):
-    
+
     anger_levels = np.random.choice([1, 2, 3], size=1000) # Randomly sample an anger level
-    
+
     policy_db = {
         policy_id:Policy(
             policy_id,
@@ -512,7 +513,7 @@ def simulate_company(n_policies):
 
     for policy_id, policy in policy_db.items():
         policy.simulate_claims()
-        
+
     return policy_db
 
 policy_db = simulate_company(N_POLICIES)
@@ -522,20 +523,20 @@ Next, we migrate the database to get tables for the policies and the claims and 
 
 ```python
 def migrate_policy_db(policy_db):
-    
+
     ids = []
     sums_insured = []
     premiums = []
     ex_partner_anger = [] # Add it
     n_claims = []
-    
+
     for policy_id, policy in policy_db.items():
         ids.append(policy.ID)
         sums_insured.append(policy.sum_insured)
         premiums.append(policy.premium)
         ex_partner_anger.append(policy.ex_partner_anger) # Add it
         n_claims.append(policy.n_claims)
-        
+
     df = pd.DataFrame({
         'policy_id': ids,
         'sum_insured': sums_insured,
@@ -543,7 +544,7 @@ def migrate_policy_db(policy_db):
         'n_claims': n_claims,
         'ex_partner_anger': ex_partner_anger # Add it
     })
-    
+
     return df
 ```
 
@@ -618,14 +619,14 @@ class Policy():
         self.ex_partner_anger = ex_partner_anger
         self.number_poles = number_poles
         self.factory_distance = factory_distance
-        
+
     def simulate_claims(self):
-        
+
         beta_a = BETA_A * ExAngerModifier[self.ex_partner_anger]
         beta_b = BETA_B / DistanceModifier(self.factory_distance) # Smaller BETA_B = larger variance
-        
+
         poisson_mu = POISSON_MEAN * NumPolesModifier[self.number_poles] * DistanceModifier(self.factory_distance)
-        
+
         self.n_claims = poisson.rvs(mu=POISSON_MEAN)
         self.claims = {
             claim_id:beta.rvs(a=beta_a, b=beta_b, size=1)[0] * self.sum_insured for claim_id, n in enumerate(range(self.n_claims))
@@ -636,11 +637,11 @@ Then, we also have to update our simulation function for the new features:
 
 ```python
 def simulate_company(n_policies):
-    
+
     anger_levels = np.random.choice([1, 2, 3], size=1000)
     number_poles = np.random.choice(['<10', '10-20', '>20'], size=1000)
     factory_distance = np.random.rand(1000) * 100 # Random distance between 0 and 100
-    
+
     policy_db = {
         policy_id:Policy(
             policy_id,
@@ -654,7 +655,7 @@ def simulate_company(n_policies):
 
     for policy_id, policy in policy_db.items():
         policy.simulate_claims()
-        
+
     return policy_db
 
 policy_db = simulate_company(N_POLICIES)
@@ -664,7 +665,7 @@ And then finally we update our policy database migration for the new fields.
 
 ```python
 def migrate_policy_db(policy_db):
-    
+
     ids = []
     sums_insured = []
     premiums = []
@@ -672,7 +673,7 @@ def migrate_policy_db(policy_db):
     number_poles = []
     factory_distance = []
     n_claims = []
-    
+
     for policy_id, policy in policy_db.items():
         ids.append(policy.ID)
         sums_insured.append(policy.sum_insured)
@@ -681,7 +682,7 @@ def migrate_policy_db(policy_db):
         number_poles.append(policy.number_poles)
         factory_distance.append(policy.factory_distance)
         n_claims.append(policy.n_claims)
-        
+
     df = pd.DataFrame({
         'policy_id': ids,
         'sum_insured': sums_insured,
@@ -691,7 +692,7 @@ def migrate_policy_db(policy_db):
         'number_poles': number_poles,
         'factory_distance': factory_distance,
     })
-    
+
     return df
 ```
 

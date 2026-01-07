@@ -1,151 +1,151 @@
 /* == Setup & Config == */
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap');
 
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--font-serif: "Lora", serif;
-	--font-sans: "Karla", sans-serif;
+  --font-serif: 'Lora', serif;
+  --font-sans: 'Karla', sans-serif;
 
-	--color-paper: #f8f4e8;
-	--color-ink: #3a3a3a;
-	--color-ink-muted: #7a7a7a;
-	--color-accent: #8c4a3c;
+  --color-paper: #f8f4e8;
+  --color-ink: #3a3a3a;
+  --color-ink-muted: #7a7a7a;
+  --color-accent: #8c4a3c;
 }
 
 /* == Base Styles == */
 body {
-	background-color: var(--color-paper);
-	color: var(--color-ink);
-	font-family: var(--font-serif);
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* == Typography (Prose) Scope == */
 .prose {
-	/* -- Theme Overrides -- */
-	--tw-prose-body: var(--color-ink);
-	--tw-prose-headings: var(--color-ink);
-	--tw-prose-lead: var(--color-ink-muted);
-	--tw-prose-links: var(--color-accent);
-	--tw-prose-bold: var(--color-ink);
-	--tw-prose-counters: var(--color-ink-muted);
-	--tw-prose-bullets: var(--color-ink-muted);
-	--tw-prose-hr: #e0ddd3;
-	--tw-prose-quotes: var(--color-ink);
-	--tw-prose-quote-borders: #e0ddd3;
-	--tw-prose-captions: var(--color-ink-muted);
+  /* -- Theme Overrides -- */
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-ink-muted);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-ink-muted);
+  --tw-prose-bullets: var(--color-ink-muted);
+  --tw-prose-hr: #e0ddd3;
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: #e0ddd3;
+  --tw-prose-captions: var(--color-ink-muted);
 
-	/* -- Root Typography -- */
-	font-family: var(--font-serif);
-	font-size: 1.125rem;
-	line-height: 1.75;
+  /* -- Root Typography -- */
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.75;
 
-	/* -- Elements -- */
-	h1,
-	h2,
-	h3 {
-		font-weight: 600;
-		letter-spacing: -0.025em;
-	}
+  /* -- Elements -- */
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
 
-	a {
-		text-decoration-thickness: 1px;
-		text-underline-offset: 2px;
-		transition: all 0.2s ease-in-out;
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: all 0.2s ease-in-out;
 
-		&:hover {
-			color: var(--color-ink);
-			text-decoration-color: var(--color-accent);
-		}
-	}
+    &:hover {
+      color: var(--color-ink);
+      text-decoration-color: var(--color-accent);
+    }
+  }
 
-	table {
-		@apply block w-full overflow-x-auto text-sm;
-	}
+  table {
+    @apply block w-full overflow-x-auto text-sm;
+  }
 
-	img {
-		@apply block mx-auto;
-	}
+  img {
+    @apply block mx-auto;
+  }
 
-	/* -- Code Blocks -- */
-	code {
-		counter-reset: line;
-	}
+  /* -- Code Blocks -- */
+  code {
+    counter-reset: line;
+  }
 
-	pre {
-		max-width: 88ch;
-		background-color: #fbf9f4;
-		@apply text-sm border border-gray-300 rounded-lg p-5;
+  pre {
+    max-width: 88ch;
+    background-color: #fbf9f4;
+    @apply text-sm border border-gray-300 rounded-lg p-5;
 
-		& > code {
-			counter-reset: line;
-			color: #3a3a3a;
-		}
-	}
+    & > code {
+      counter-reset: line;
+      color: #3a3a3a;
+    }
+  }
 
-	code > [data-line]::before {
-		counter-increment: line;
-		content: counter(line);
-		@apply mr-4 inline-block w-4 text-right text-gray-300;
-	}
+  code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply mr-4 inline-block w-4 text-right text-gray-300;
+  }
 
-	/* -- Feature: Footnotes -- */
-	.data-footnote-backref {
-		@apply no-underline text-accent hover:underline;
-	}
+  /* -- Feature: Footnotes -- */
+  .data-footnote-backref {
+    @apply no-underline text-accent hover:underline;
+  }
 
-	section[data-footnotes] {
-		@apply mt-12 pt-6 border-t border-gray-200 text-sm text-ink-muted;
+  section[data-footnotes] {
+    @apply mt-12 pt-6 border-t border-gray-200 text-sm text-ink-muted;
 
-		h2 {
-			@apply sr-only;
-		}
+    h2 {
+      @apply sr-only;
+    }
 
-		ol {
-			@apply list-decimal ml-4 space-y-2;
-		}
-	}
+    ol {
+      @apply list-decimal ml-4 space-y-2;
+    }
+  }
 
-	/* -- Feature: Markdown Alerts -- */
-	.markdown-alert {
-		@apply my-6 rounded-r-lg border-l-4 p-4 text-base;
-		background-color: #fbf9f4;
+  /* -- Feature: Markdown Alerts -- */
+  .markdown-alert {
+    @apply my-6 rounded-r-lg border-l-4 p-4 text-base;
+    background-color: #fbf9f4;
 
-		.markdown-alert-title {
-			@apply mb-2 flex items-center gap-2 font-bold uppercase tracking-wider text-xs;
-		}
+    .markdown-alert-title {
+      @apply mb-2 flex items-center gap-2 font-bold uppercase tracking-wider text-xs;
+    }
 
-		& > *:last-child {
-			@apply mb-0;
-		}
+    & > *:last-child {
+      @apply mb-0;
+    }
 
-		/* Note Variant */
-		&.markdown-alert-note {
-			border-color: var(--color-accent);
+    /* Note Variant */
+    &.markdown-alert-note {
+      border-color: var(--color-accent);
 
-			.markdown-alert-title {
-				color: var(--color-accent);
-			}
-		}
-	}
+      .markdown-alert-title {
+        color: var(--color-accent);
+      }
+    }
+  }
 
-	/* -- Feature: Changelog -- */
-	.changelog {
-		@apply font-sans text-sm text-ink-muted mt-12 pt-6 border-t border-gray-200;
+  /* -- Feature: Changelog -- */
+  .changelog {
+    @apply font-sans text-sm text-ink-muted mt-12 pt-6 border-t border-gray-200;
 
-		h2 {
-			@apply text-base text-ink-muted font-semibold tracking-normal mt-0 mb-4;
-		}
+    h2 {
+      @apply text-base text-ink-muted font-semibold tracking-normal mt-0 mb-4;
+    }
 
-		ul {
-			@apply text-ink-muted list-none p-0;
-		}
+    ul {
+      @apply text-ink-muted list-none p-0;
+    }
 
-		li {
-			@apply text-ink-muted mb-2;
-		}
-	}
+    li {
+      @apply text-ink-muted mb-2;
+    }
+  }
 }

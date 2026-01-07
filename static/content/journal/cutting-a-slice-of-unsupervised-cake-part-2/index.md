@@ -34,7 +34,7 @@ PREMIUM = 0.1 * SUM_INSURED
 
 ExAngerModifier = {
     1: 0.5,
-    2: 1, 
+    2: 1,
     3: 1.5
 }
 
@@ -68,7 +68,6 @@ class Policy():
             claim_id:beta.rvs(a=beta_a, b=beta_b, size=1)[0] * self.sum_insured for claim_id, n in enumerate(range(self.n_claims))
         }
 
-
 def simulate_company(n_policies):
 
     anger_levels = np.random.choice([1, 2, 3], size=1000)
@@ -91,9 +90,8 @@ def simulate_company(n_policies):
 
     return policy_db
 
-
 def migrate_policy_db(policy_db):
-    
+
     ids = []
     sums_insured = []
     premiums = []
@@ -101,7 +99,7 @@ def migrate_policy_db(policy_db):
     number_poles = []
     factory_distance = []
     n_claims = []
-    
+
     for policy_id, policy in policy_db.items():
         ids.append(policy.ID)
         sums_insured.append(policy.sum_insured)
@@ -110,7 +108,7 @@ def migrate_policy_db(policy_db):
         number_poles.append(policy.number_poles)
         factory_distance.append(policy.factory_distance)
         n_claims.append(policy.n_claims)
-        
+
     df = pd.DataFrame({
         'policy_id': ids,
         'sum_insured': sums_insured,
@@ -120,29 +118,27 @@ def migrate_policy_db(policy_db):
         'number_poles': number_poles,
         'factory_distance': factory_distance,
     })
-    
+
     return df
 
-
 def migrate_claims_db(policy_db):
-    
+
     # Define the columns of the table
     policy_ids = []
     claim_ids = []
     claim_costs = []
-    
+
     # Fetch the values for the columns
     for policy_id, policy in policy_db.items():
         for claim_id, claim_cost in policy.claims.items():
             policy_ids.append(policy_id)
             claim_ids.append(claim_id)
             claim_costs.append(claim_cost)
-            
+
     # Slap it all into a dataframe
     df = pd.DataFrame({'policy_id': policy_ids, 'claim_id': claim_ids, 'claim_cost': claim_costs})
-            
-    return df
 
+    return df
 
 policy_db = simulate_company(N_POLICIES)
 policy_df = migrate_policy_db(policy_db)
@@ -213,6 +209,7 @@ from sklearn.metrics import accuracy_score
 
 print("Accuracy:", f"{accuracy_score(data['outlier'], km.labels_):.2%}")
 ```
+
 ```output
 Accuracy: 86.60%
 ```
@@ -228,6 +225,7 @@ print("Precision:", f"{precision_score(data['outlier'], km.labels_):.2%}")
 print("Recall:", f"{recall_score(data['outlier'], km.labels_):.2%}")
 print("F1:", f"{f1_score(data['outlier'], km.labels_):.2%}")
 ```
+
 ```output
 Precision: 42.31%
 Recall: 80.00%
@@ -302,6 +300,7 @@ print("Precision:", f"{precision_score(data['outlier'], data['DBSCAN']):.2%}")
 print("Recall:", f"{recall_score(data['outlier'], data['DBSCAN']):.2%}")
 print("F1:", f"{f1_score(data['outlier'], data['DBSCAN']):.2%}")
 ```
+
 ```output
 Precision: 80.00%
 Recall: 58.18%
@@ -321,6 +320,7 @@ Now, we don’t really have much control over how we identify the outliers, do w
 Gaussian Mixture Models (GMMs) basically try to find normally distributed clusters in the data. If we say there are two clusters, it will try to find two normally distributed clusters. I really like what the scikit-learn documentation says about GMMs:
 
 > One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians.
+>
 > - [https://scikit-learn.org/stable/modules/mixture.html](https://scikit-learn.org/stable/modules/mixture.html)
 
 So, we tell it we want 2 clusters, and the GMM will not only find two clusters, but it will fit a normal distribution to the cluster. What does this mean for us? It means we can control what we consider an outlier.
@@ -331,6 +331,7 @@ from sklearn.mixture import GaussianMixture
 gm = GaussianMixture(n_components=1)
 gm.fit(train_sc)
 ```
+
 ```output
 GaussianMixture()
 ```
@@ -358,6 +359,7 @@ print("Precision:", f"{precision_score(data['outlier'], data['GMM']):.2%}")
 print("Recall:", f"{recall_score(data['outlier'], data['GMM']):.2%}")
 print("F1:", f"{f1_score(data['outlier'], data['GMM']):.2%}")
 ```
+
 ```output
 Precision: 81.48%
 Recall: 40.00%

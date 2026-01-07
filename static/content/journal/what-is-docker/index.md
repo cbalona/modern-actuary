@@ -17,6 +17,7 @@ Let's see what Docker themselves have to say:
 If you are not familiar with the computer science world already, that may sound very confusing. So let's try bring it back a step and relate it to our world.
 
 Let's say we want to perform a valuation. We need the following things:
+
 - A valuation model (perhaps an excel workbook)
 - A software to run the valuation model (Microsoft Excel, probably)
 - An operating system to run the software (Windows, probably)
@@ -28,17 +29,17 @@ Typically, in our workplace, we have all of the above ready for us immediately. 
 
 But now let's imagine that had a very difficult manager who uses some flavor of Linux and refuses to install Microsoft Excel, and hence can't run the valuation model. Then, every time we needed to recalculate and communicate results, we needed to find a way to run the model on their PC without impacting their system. One way, is we could run a virtual machine (an operating system inside an operating system), install Windows on it, install Excel, copy over the model, and open it up to show them.
 
-*Exhausting.*
+_Exhausting._
 
 We may not be familiar with this process, but it is similar to something that occurs often in other domains, such as web development. Docker exists in part to address this problem.
 
-With Docker we can define a set of rules to automatically perform all the set up steps above inside an isolated environment known as a **container**. These rules are defined in a file called a *Dockerfile*. In that file, we will specify the container environment (analogous to the operating system), the software we need, the folders we where we want to store our work, and the data we want to copy over. Docker can then automatically run all the steps and set up a fresh clean environment very efficiently. Let's give a dummy example of such a file:
+With Docker we can define a set of rules to automatically perform all the set up steps above inside an isolated environment known as a **container**. These rules are defined in a file called a _Dockerfile_. In that file, we will specify the container environment (analogous to the operating system), the software we need, the folders we where we want to store our work, and the data we want to copy over. Docker can then automatically run all the steps and set up a fresh clean environment very efficiently. Let's give a dummy example of such a file:
 
 ```python
 # Note, this is just a rough, simplified example of how a Dockerfile looks. It won't actually work!
 
 # Tell docker to install Windows 10 as the operating system*
-FROM windows:install-windows-10 
+FROM windows:install-windows-10
 # Tell docker we want Microsoft Excel on the operating system
 RUN install "Microsoft Excel"
 # Make a folder for our valuation

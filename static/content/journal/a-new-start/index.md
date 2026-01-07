@@ -33,5 +33,3 @@ My intention is to contribute more regularly from now on. I have evolved greatly
 I think AI is a double-edged sword. It is immensely useful and beneficial if used correctly, it can also be a huge hindrance to learning, quality, and uniqueness if used poorly. I plan to write more about this in future posts.
 
 Thanks for reading, and stay tuned.
-
-  

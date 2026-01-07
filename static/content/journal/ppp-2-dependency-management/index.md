@@ -85,10 +85,11 @@ to focus on `uv`, because it is the tool I use, and it is the one I prefer. Why 
 prefer it? Simplicity.
 
 When you want a virtual environment, there are two-point-five things you need to do:
-1) install `uv` if you don't already have it (see here: [uv installation
+
+1. install `uv` if you don't already have it (see here: [uv installation
    instructions](https://docs.astral.sh/uv/getting-started/installation/))
-2) create it
-3) activate it
+2. create it
+3. activate it
 
 That's it. That's all you need to do. And `uv venv` does just that. It creates a virtual
 environment, and it activates it. It is that simple. Let's see how it works. You'd
@@ -121,7 +122,7 @@ Now, this version of `polars` will exist only in this folder for this environmen
 
 Now, notice earlier I said two-point-five things to do? Yea, you need to install `uv`
 first. But, you only need to do that once. So, it is really just two things to do once
-you have it installed. 
+you have it installed.
 
 ## Okay, we have ring-fenced our environment. Where is the dependency management?
 
@@ -134,7 +135,7 @@ do this is to create a file that lists all the packages we depend on, and their
 versions. This file would be your "dependency manifest", or "project configuration
 file". In Python, this was typically the `requirements.txt` file. In this file, you
 simply list your projects requirements. A nice easy way has always been to say `pip
-freeze > requirements.txt`. What this does is write *aaaallll* your installed packages
+freeze > requirements.txt`. What this does is write _aaaallll_ your installed packages
 and their versions to the `requirements.txt` file.
 
 It feels weird to me to install what I need, and then define a file to say what I need,
@@ -209,8 +210,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "numpy>=2.3.4",
-    "polars>=1.35.2",
+  "numpy>=2.3.4",
+  "polars>=1.35.2",
 ]
 ```
 
@@ -231,8 +232,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "numpy>=2.3.4",
-    "polars<1",
+  "numpy>=2.3.4",
+  "polars<1",
 ]
 ```
 

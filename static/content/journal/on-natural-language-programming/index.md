@@ -14,17 +14,18 @@ I think they are exceptional tools that have already transformed how we live, an
 
 ## Why share these thoughts?
 
-The reason I want to share my thoughts, unprovoked I might add, is that I hold a strong opinion that *how* we do things is often more important than the thing we actually do. A deed may be good, but the intent selfish. A solution may work, but the process to get there unethical. The result may be correct, but the method flawed.
+The reason I want to share my thoughts, unprovoked I might add, is that I hold a strong opinion that _how_ we do things is often more important than the thing we actually do. A deed may be good, but the intent selfish. A solution may work, but the process to get there unethical. The result may be correct, but the method flawed.
 
 Does a correct solution make the world better, or does the rigour and learnings of how we arrived at it?
 
 In one of my talks on AI, I frame what I call the "Journey of Knowledge". I discuss how over time, we have shortened the distance from ignorance to knowledge.
-*   **Cave paintings:** Not portable. The distance to knowledge was long, both metaphorically and literally.
-*   **Writing:** Portable knowledge. Sharable, but it took effort to copy. The distance shortened.
-*   **The Printing Press:** Gutenberg released his killer app: the printing press. Copies were made and distributed globally. The distance shortened further.
-*   **The Internet:** Instant access. The world at our fingertips. The distance became almost non-existent.
 
-In all these cases, the final step still required *us* to consume, understand, and interpret that knowledge which we sought. We had to synthesise that information into a solution, decision, or action. The interface changed, but the final step remained ours to perform.
+- **Cave paintings:** Not portable. The distance to knowledge was long, both metaphorically and literally.
+- **Writing:** Portable knowledge. Sharable, but it took effort to copy. The distance shortened.
+- **The Printing Press:** Gutenberg released his killer app: the printing press. Copies were made and distributed globally. The distance shortened further.
+- **The Internet:** Instant access. The world at our fingertips. The distance became almost non-existent.
+
+In all these cases, the final step still required _us_ to consume, understand, and interpret that knowledge which we sought. We had to synthesise that information into a solution, decision, or action. The interface changed, but the final step remained ours to perform.
 
 AI, particularly Large Language Models (LLMs), promises to skip this step. We no longer need to interpret knowledge; we can simply ask for a solution directly. The interface has changed again, but this time, the final step is outsourced to the machine.
 
@@ -32,15 +33,15 @@ What is the risk of skipping that step?
 
 ## Dijkstra saw it coming
 
-Edsger W. Dijkstra, a pioneer of computer science, had strong views on this. In his 1982 paper, *[On the foolishness of "natural language programming"](https://www.cs.utexas.edu/~EWD/transcriptions/EWD06xx/EWD667.html)*, he argued that using natural language as a programming interface is inherently flawed. He believed that natural language is ambiguous, imprecise, and context-dependent, making it unsuitable for programming tasks that require clarity and precision.
+Edsger W. Dijkstra, a pioneer of computer science, had strong views on this. In his 1982 paper, _[On the foolishness of "natural language programming"](https://www.cs.utexas.edu/~EWD/transcriptions/EWD06xx/EWD667.html)_, he argued that using natural language as a programming interface is inherently flawed. He believed that natural language is ambiguous, imprecise, and context-dependent, making it unsuitable for programming tasks that require clarity and precision.
 
-Today, we have natural language programming. In fact, we have natural language decision-making, action-taking, and problem-solving. We can ask an AI to write code, make decisions, solve problems, and take actions on our behalf using conversational English. It has never been easier to make mistakes and be misunderstood *en masse*.
+Today, we have natural language programming. In fact, we have natural language decision-making, action-taking, and problem-solving. We can ask an AI to write code, make decisions, solve problems, and take actions on our behalf using conversational English. It has never been easier to make mistakes and be misunderstood _en masse_.
 
 It is interesting to think that in almost all aspects of life we have aimed for more precision, clarity, and unambiguity. We always have. The phonetic alphabet, Morse code, programming languages, formal logic, mathematical notation. All these systems were created to reduce ambiguity. We built these systems because natural language failed us in technical contexts.
 
 So why are we now so eagerly embracing an imprecise, ambiguous interface for tasks that require clarity and precision?[^2]
 
-[^2]: I am not arguing against the use of natural language interfaces. They have their place. I am arguing for *how* we use them, and the risks we take when we do.
+[^2]: I am not arguing against the use of natural language interfaces. They have their place. I am arguing for _how_ we use them, and the risks we take when we do.
 
 ## Broken windows and red robots
 
@@ -54,7 +55,7 @@ Why? Partially, it’s the "Broken Window" theory: once you see three other peop
 
 But deeper than that, it is a symptom of a lack of space. We are impatient, rushed, and overwhelmed. When we are overwhelmed, tired, or rushed, that effort feels like a luxury. We make a trade-off: we trade the effort of obeying the rule for the perceived benefit of maintaining momentum. Its not malice, or laziness, but rather a coping mechanism.
 
-One might argue "no harm, no foul." If we are far from other cars and we didn't cause an accident, what is the harm? 
+One might argue "no harm, no foul." If we are far from other cars and we didn't cause an accident, what is the harm?
 
 The harm is the removal of predictability. We don't follow rules for the sake of rules. We follow them because they create a predictable environment. When we remove that predictability, we increase the cognitive load on everyone else. The roads become less safe, more stressful, and more chaotic. The vicious cycle continues.
 

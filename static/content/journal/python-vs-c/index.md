@@ -33,7 +33,7 @@ It goes even deeper than that, <a href="https://numpy.org/">NumPy</a>, the core 
 
 > "The core of NumPy is well-optimized C code. Enjoy the flexibility of Python with the speed of compiled code."
 
-If you are using these libraries, you are benefitting from C to a large degree anyway. Yes, it won't be *as* fast as pure raw C, but the differences are likely not material and the extra effort is not necessary. That brings me to the next point...
+If you are using these libraries, you are benefitting from C to a large degree anyway. Yes, it won't be _as_ fast as pure raw C, but the differences are likely not material and the extra effort is not necessary. That brings me to the next point...
 
 ## Computation speed is not the be all and end all
 

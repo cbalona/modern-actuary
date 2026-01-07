@@ -199,7 +199,7 @@ So let's give this a shot.. Let's make the latest diagonal of our triangle a ser
 train_data = data.copy().to_frame()
 for j, accident_date in enumerate(train_data.index):
     train_data.iloc[len(train_data.index) - j - 1, j] = "BLANK"
-    
+
 train_data
 ```
 
@@ -216,6 +216,7 @@ train_data
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -377,14 +378,15 @@ triangle_sentence = ""
 
 for i in range(train_data.shape[0]):
     triangle_sentence += train_data.iloc[i].dropna().to_csv()
-    
+
 triangle_sentence
 ```
+
 (Output removed for brevity, as it is a long CSV string.)
 
 Finally, let's ask the latest (at the time of writing) GPT-3.5 model behind ChatGPT to fill in the blanks!
 
-*(Note: API setup code and the large system prompt are omitted for readability.)*
+_(Note: API setup code and the large system prompt are omitted for readability.)_
 
 The calculated Root Mean Square Error (RMSE) against the actual known completion values was:
 
@@ -404,13 +406,13 @@ Let's try GPT-4. I don't have API access to it so I had to do the prompt manuall
 
 Using GPT-4, the response is a lot more enjoyable! Here it is:
 
-***To fill in your triangle, I'll need to use some form of actuarial reserving methods. In actuarial science, common techniques include the chain ladder method, the Bornhuetter-Ferguson method, or the Cape Cod method.***
+**_To fill in your triangle, I'll need to use some form of actuarial reserving methods. In actuarial science, common techniques include the chain ladder method, the Bornhuetter-Ferguson method, or the Cape Cod method._**
 
-***However, as you've mentioned, the Chain Ladder method is too interpretable, so I'll be using a method that respects trends in data but also tries to find a pattern for the incremental data to fill in the blanks. This method is not guaranteed to always provide the best results, as it depends heavily on the nature of the data and underlying claims development.***
+**_However, as you've mentioned, the Chain Ladder method is too interpretable, so I'll be using a method that respects trends in data but also tries to find a pattern for the incremental data to fill in the blanks. This method is not guaranteed to always provide the best results, as it depends heavily on the nature of the data and underlying claims development._**
 
-***Here are the filled blanks for your data:***
+**_Here are the filled blanks for your data:_**
 
-***120, 18735.0
+**_120, 18735.0
 108, 16423.0
 96, 23357.0
 84, 26775.0
@@ -419,9 +421,9 @@ Using GPT-4, the response is a lot more enjoyable! Here it is:
 48, 11300.0
 36, 7200.0
 24, 5500.0
-12, 2000.0***
+12, 2000.0_**
 
-***Please note that the exact values could be different if different methods or different assumptions are used. Each claim development triangle is unique and may require different approaches based on the nature and the distribution of the data. Therefore, I recommend consulting with an actuary or data scientist for an in-depth analysis and completion of your triangle.***
+**_Please note that the exact values could be different if different methods or different assumptions are used. Each claim development triangle is unique and may require different approaches based on the nature and the distribution of the data. Therefore, I recommend consulting with an actuary or data scientist for an in-depth analysis and completion of your triangle._**
 
 The calculated RMSE for the GPT-4 predictions against the actual diagonal values was:
 
@@ -431,7 +433,7 @@ The calculated RMSE for the GPT-4 predictions against the actual diagonal values
 
 Much better! One of the downsides however is that if you input the exact same prompt, you likely will get a different answer. Not good for reserving, but great for bootstrapping :).
 
-Using the API, we can set a low *temperature* to be more deterministic. *Temperature* is a parameter that controls the creativity of GPT-3.5 and GPT-4. But without API access for GPT-4, we just have to settle on chaos.
+Using the API, we can set a low _temperature_ to be more deterministic. _Temperature_ is a parameter that controls the creativity of GPT-3.5 and GPT-4. But without API access for GPT-4, we just have to settle on chaos.
 
 ## Comparison with Basic Chainladder
 
@@ -440,17 +442,19 @@ How do our results compare to a basic chainladder (BCL) run using `chainladder-p
 First, the BCL score (excluding the latest accident year, as BCL cannot predict it without assumption):
 
 **Basic Chainladder RMSE (1981-1989):**
+
 ```
 2476.6124040713353
 ```
 
-And our GPT-4 score for the comparable set (1981-1989)... *drumroll*...
+And our GPT-4 score for the comparable set (1981-1989)... _drumroll_...
 
 ```python
 np.mean((actual[:-1] - gpt4_preds[:-1]) ** 2) ** 0.5
 ```
 
 **Adjusted GPT-4 RMSE (1981-1989):**
+
 ```
 2180.9121689992216
 ```

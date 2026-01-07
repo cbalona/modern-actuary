@@ -30,9 +30,10 @@ Unfortunately, since Make uses your systems terminal commands it means that the 
 ## Automating the creation of the virtual environment
 
 When starting a new Python project the first thing I do is make a virtual environment, update `pip`, `setuptools`, and `wheel` and install `pip-tools`. I did not discuss updating these packages, but it is good practice to use their latest versions. If you are not familiar with them:
-* `pip` is the package installer for Python
-* `setuptools` is used to build and install Python packages from source
-* `wheel` is used to install Python packages that have been pre-built as `.whl` files
+
+- `pip` is the package installer for Python
+- `setuptools` is used to build and install Python packages from source
+- `wheel` is used to install Python packages that have been pre-built as `.whl` files
 
 It is good to have these packages updated to the latest version to ensure no bugs interfere with your installation of packages.
 
@@ -62,7 +63,7 @@ Let's go through those commands one by one.
 
 We first create our virtual environment using `virtualenv .venv`. This places our virtual environment in the `.venv` folder in our directory. Then, we activate it using `source .venv/bin/activate` and upgrade `pip` using `pip install --upgrade pip`. Note here I have the activation and the `pip` command in the same line separated by a `;`. This means that the commands will be executed one after the other and within the same shell.
 
-In a Make "*recipe*" each new line is independent of the previous one. If instead I had activated first, then on a new line upgraded, it would mean that the second line would not run within the activated environment. It would be completely independent of the previous one. So the `;` ensures that the lines are executed in the same shell. This is important to remember when writing your own Makefiles. Just imagine each line is like opening an entirely new command line / shell and executing the command there.
+In a Make "_recipe_" each new line is independent of the previous one. If instead I had activated first, then on a new line upgraded, it would mean that the second line would not run within the activated environment. It would be completely independent of the previous one. So the `;` ensures that the lines are executed in the same shell. This is important to remember when writing your own Makefiles. Just imagine each line is like opening an entirely new command line / shell and executing the command there.
 
 Then, after upgrading `pip`, I use a similar set of commands to upgrade `setuptools` and `wheel`. Finally, I install `pip-tools` using `pip install pip-tools`.
 
@@ -89,6 +90,7 @@ setup:
 Recall from PPP 2 that I prefer to specify the packages my Python code depends on in a requirements.in file. I then use `pip-compile` to compile this into a `requirements.txt` file. I then use `pip-sync` to synchronise my virtual environment with the packages specified in the `requirements.txt` file. (If you are confused where `pip-compile` and `pip-sync` come from, they are the tools in the `pip-tools` package.)
 
 The process goes like this:
+
 1. Update the `requirements.in` file by adding / removing / editing the `requirements.in` file.
 2. Compile the `requirements.in` file into a `requirements.txt` file by running `pip-compile requirements.in`.
 3. Synchronise the virtual environment with the packages specified in the `requirements.txt` file by running `pip-sync requirements.txt`.
@@ -97,6 +99,7 @@ The process goes like this:
 Ideally, we want to automate this process so that we can run a single command whenever we change the `requirements.in` file and it will automatically compile the `requirements.in` file into a `requirements.txt` file and then synchronise the virtual environment with the packages specified in the `requirements.txt` file.
 
 To achieve this we need a few things:
+
 1. A way to check if the `requirements.in` file has changed.
 2. A way to compile the `requirements.in` file into a `requirements.txt` file if `requirements.in` has changed.
 3. A way to check if the `requirements.txt` file has changed.
@@ -111,11 +114,11 @@ requirements.txt: requirements.in
 	$(VENV); pip-compile requirements.in
 ```
 
-This says that `requirements.txt` depends on `requirements.in` and the commands below the "*target*" line are the commands to run whenever `requirements.txt` is older than `requirements.in` and we run Make.
+This says that `requirements.txt` depends on `requirements.in` and the commands below the "_target_" line are the commands to run whenever `requirements.txt` is older than `requirements.in` and we run Make.
 
-Now, if I run `make requirements.txt` it will run the commands below the "*target*" line. In this case, it will run `pip-compile` to generate `requirements.txt` from `requirements.in`.
+Now, if I run `make requirements.txt` it will run the commands below the "_target_" line. In this case, it will run `pip-compile` to generate `requirements.txt` from `requirements.in`.
 
-The next dependency is between `requirements.txt` and our virtual environment. We want to make sure that our virtual environment is up to date with the packages in `requirements.txt`. We can do this by specifying a dependency between `requirements.txt` and the virtual environment. To do this, we need a way to track if our virtual environment has changed. This is a tiny bit of a hack, but what I do is create what is known as a *touchfile* within my virtual environment folder (`.venv`). It is a trick I picked up from a Stack Overflow post many moons ago. The *touchfile* is a file that has its modification time updated whenever the virtual environment is updated. My Make recipe checks the modification time of the *touchfile* and if it is older than `requirements.txt` then it will run the commands below the "*target*" line. In this case, it will run `pip-sync` to update the virtual environment with the packages in `requirements.txt`.
+The next dependency is between `requirements.txt` and our virtual environment. We want to make sure that our virtual environment is up to date with the packages in `requirements.txt`. We can do this by specifying a dependency between `requirements.txt` and the virtual environment. To do this, we need a way to track if our virtual environment has changed. This is a tiny bit of a hack, but what I do is create what is known as a _touchfile_ within my virtual environment folder (`.venv`). It is a trick I picked up from a Stack Overflow post many moons ago. The _touchfile_ is a file that has its modification time updated whenever the virtual environment is updated. My Make recipe checks the modification time of the _touchfile_ and if it is older than `requirements.txt` then it will run the commands below the "_target_" line. In this case, it will run `pip-sync` to update the virtual environment with the packages in `requirements.txt`.
 
 Here is the recipe:
 
@@ -125,7 +128,7 @@ Here is the recipe:
 	touch .venv/touchfile
 ```
 
-This says that `.venv/touchfile` is a target that depends on `requirements.txt`. If `requirements.txt` changes, then we run `pip-sync` to update the virtual environment and mark it as up-to-date by "touching" the *touchfile*. (In Unix, the `touch` command updates the timestamp of a file, or creates it if it doesn't exist.)
+This says that `.venv/touchfile` is a target that depends on `requirements.txt`. If `requirements.txt` changes, then we run `pip-sync` to update the virtual environment and mark it as up-to-date by "touching" the _touchfile_. (In Unix, the `touch` command updates the timestamp of a file, or creates it if it doesn't exist.)
 
 Great! Now we can run `make .venv/touchfile` to update the virtual environment. But, again, note that we have these two commands to run whenever we want to update the virtual environment: `make requirements.txt` and `make .venv/touchfile`. We can combine these into a single command by making a final target that depends `venv/touchfile`.
 
@@ -141,6 +144,7 @@ requirements.txt: requirements.in
 ```
 
 Quick recap:
+
 1. `venv` is a target that depends on `.venv/touchfile`
 2. `.venv/touchfile` is a target that depends on `requirements.txt`
 3. `requirements.txt` is a target that depends on `requirements.in`
@@ -193,6 +197,7 @@ data: triangulate
 ```
 
 The `Makefile` above will:
+
 1. Make the data folders if they don't exist
 2. Sync the data from the source on the server to the local data folders
 3. Unzip the data
@@ -208,6 +213,7 @@ All with one command: `make data`.
 Make is one of the tools I use the most in my day to day work. It just makes things so much easier. I have recipes strewn all over my PC that I sample from all the time. I sync data, build software, generate reports, deploy this blog, and much more with it. Once you have built the recipes it is a major time saver.
 
 I do have some cautions however, before I give a sample of my personal `Makefile`:
+
 1. Make is old, and it can be tricky. Unfortunately, it does have its rough edges. The more fancy you try to get, the more likely you are to run into them. If you start to write massive recipes, you may want to consider just writing a script in Python or `bash` instead, and using that in your `Makefile`.
 2. Make is not OS agnostic. Make runs the commands in your OS default terminal. On Windows, this is most likely command prompt or PowerShell. On Linux, it is probably `bash`. This means that if you want to use Make on Windows your recipes need to be written in a way that is compatible with the Windows terminal you use. This is not a huge issue, but it is something to be aware of. These days with ChatGPT is easy really easy to translate between `bash` and `cmd`/`PowerShell` if you need to.
 3. Make is a build automation tool, not a general purpose automation tool. It is not meant to be used for everything. It is meant to be used for building software. Granted, I tend to abuse it a bit, but I do try to keep it limited to running commands like I've shown above. If you are trying to do something more complicated, you may want to consider using a different tool specifically designed for that purpose.
@@ -226,6 +232,7 @@ For Windows it is a bit trickier. I'd strongly recommend you use [chocolatey](ht
 https://leangaurav.medium.com/how-to-setup-install-gnu-make-on-windows-324480f1da69
 
 **Makefile using bash**
+
 ```makefile
 .PHONY: venv setup
 
@@ -253,7 +260,8 @@ setup:
 ```
 
 **Makefile using cmd**
-*Note I have not used this in a while, so it may not work as expected*
+_Note I have not used this in a while, so it may not work as expected_
+
 ```makefile
 .PHONY: venv setup
 
