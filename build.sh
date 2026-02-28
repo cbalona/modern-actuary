@@ -22,4 +22,4 @@ fi
 
 # Log the final URL being used and execute the build.
 echo "Using site URL: $PUBLIC_SITE_URL"
-pnpm run build:kit
+bun run build:kit
