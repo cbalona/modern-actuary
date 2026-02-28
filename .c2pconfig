@@ -4,5 +4,6 @@ exclude_patterns = [
     "**/test*",
     "*.svg",
     "static/**",
+    "bun.lock",
 ]
 line_numbers = false

@@ -96,6 +96,7 @@ export const journalEntryMetadataSchema = v.object({
     v.transform(s => new Date(s)),
     v.date(),
   ),
+  image: v.optional(v.pipe(v.string(), v.trim())),
   updated: v.optional(
     v.pipe(
       v.string(),
@@ -136,6 +137,11 @@ async function compileJournalEntryFromFile(
   const { data, content } = matter(rawContent)
 
   const metadata = v.parse(journalEntryMetadataSchema, data)
+
+  // Normalise relative image paths in frontmatter
+  if (metadata.image?.startsWith('./')) {
+    metadata.image = `/content/journal/${slug}/${metadata.image.replace('./', '')}`
+  }
 
   // Derive the 'updated' date from the changelog if it exists.
   if (metadata.changelog && metadata.changelog.length > 0) {

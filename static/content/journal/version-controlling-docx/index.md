@@ -2,6 +2,7 @@
 title: "The power of plain text and the necessary evil of Word"
 description: "Why I write everything in plain text, and how I deal with the world that doesn't."
 date: "2026-02-28"
+image: ./splash.png
 ---
 
 You're fighting with a table that won't align. You're chasing a rogue paragraph indent

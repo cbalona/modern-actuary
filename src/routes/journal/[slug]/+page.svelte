@@ -11,7 +11,19 @@
   <title>{data.post.metadata.title} - ModernActuary</title>
   <meta name='description' content={data.post.metadata.description} />
   <link rel='canonical' href={canonicalUrl} />
+
+  <!-- Standard Open Graph Requirements -->
   <meta property='og:url' content={canonicalUrl} />
+  <meta property='og:title' content={data.post.metadata.title} />
+  <meta property='og:description' content={data.post.metadata.description} />
+  <meta property='og:type' content='article' />
+
+  <!-- Splash Image Meta Tags -->
+  {#if data.post.metadata.image}
+    <meta property='og:image' content="{data.siteUrl}{data.post.metadata.image}" />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:image' content="{data.siteUrl}{data.post.metadata.image}" />
+  {/if}
 </svelte:head>
 
 <article class='max-w-none prose'>
@@ -52,6 +64,14 @@
       {/if}
     </div>
   </header>
+
+  {#if data.post.metadata.image}
+    <img
+      src={data.post.metadata.image}
+      alt="Splash art for {data.post.metadata.title}"
+      class="w-full h-auto aspect-video object-cover rounded-lg mb-8 border border-gray-200"
+    />
+  {/if}
 
   {@html data.post.contentHTML}
 
