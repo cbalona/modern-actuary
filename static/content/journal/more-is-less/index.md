@@ -15,7 +15,7 @@ That is a huge increase. But activity is not the same as value. Does more output
 
 Obesity has increased over time. According to the [World Health Organization](https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight), worldwide adult obesity more than doubled between 1990 and 2022, while adolescent obesity quadrupled. There are many arguments as to why. Some popular ones include:
 
-- Portions have become larger. We've all seen the comparisons between UK McDonald's and the US, for example.
+- Portions have become larger. Perhaps you have seen the comparisons between McDonald's in the UK and the US, for example.
 - Food has become more calorie-dense for flavour, through high fat and high sugar content.
 - We move less because life is so much easier. We can work from home, where the “office” is likely a few steps from the bed. We can order in, and everything is delivered. We rarely have to move much.
 
@@ -65,21 +65,21 @@ The point is not that companies will naturally choose less work. They generally 
 
 I like to use a simple example to show what I mean.
 
-Let's say we have five tasks, A, B, C, D, and, you guessed it, E. Some are more important than others, so let's assume they are in order of importance and need.
+Let's say we have five tasks, **A**, **B**, **C**, **D**, and, you guessed it, **E**. Some are more important than others, so let's assume they are in order of importance and need.
 
-Let's imagine a typical week. We have five days, and before AI, each task might take most of that week. We could do A this week, B the next, then C, and so forth. Maybe we only have time for those three, so D and E get dropped.
+Let's imagine a typical week. We have five days, and before AI, each task might take most of that week. We could do **A** this week, **B** the next, then **C**, and so forth. Maybe we only have time for those three, so **D** and **E** get dropped.
 
-Introduce AI. If all the required things are in place to maximise its usage, and it makes us five times as productive, a task that took a week now takes a day. We can do a lower-quality version in half a day, which is A-, a normal version in one day, which is A, or a better version in two days, which is A+. What do we do with the remaining capacity?
+Introduce AI. If all the required things are in place to maximise its usage, and it makes us five times as productive, a task that took a week now takes a day. We can do a lower-quality version in half a day, which is **A-**, a normal version in one day, which is **A**, or a better version in two days, which is **A+**. What do we do with the remaining capacity?
 
-This is where shareholder logic returns. We must grow. The week is still expected to be full, and the purpose has quietly changed from doing the important work well to filling the available capacity. So, A, B, C, D, and E get shoved into one week. Remember, we didn't really need D and E. But no harm, no foul. We got the work done. More work gets counted as progress.
+This is where shareholder logic returns. We must grow. The week is still expected to be full, and the purpose has quietly changed from doing the important work well to filling the available capacity. So, **A**, **B**, **C**, **D**, and **E** get shoved into one week. Remember, we didn't really need **D** and **E**. But no harm, no foul. We got the work done. More work gets counted as progress.
 
-Sometimes, F, G, H, I, and J get shoved in too. We now do A-, B-, C-, and so forth. That fills the five-day week and doubles output. Wait, where did F to J even come from? Well, someone said AI is the next big thing, and companies that don't use it will be left in the dust. So let's use it. Plus, our shareholders are mighty starving. Let's give them some processed food. More work done. We fed the shareholders.
+Sometimes, **F**, **G**, **H**, **I**, and **J** get shoved in too. We now do **A-**, **B-**, **C-**, and so forth. That fills the five-day week and doubles output. Wait, where did **F** to **J** even come from? Well, someone said AI is the next big thing, and companies that don't use it will be left in the dust. So let's use it. Plus, our shareholders are mighty starving. Let's give them some processed food. More work done. We fed the shareholders.
 
 This is the quantity pressure. Under growth pressure, a company can rationally convert the gain into more units. When the easy capacity is used up, it makes each unit faster, shallower, or less carefully checked so more units fit into the same week. That is the work equivalent of making food easier and lighter to consume so that more of it can be sold. We make the work worse to beat that pesky population problem.
 
 The A+ option is not what shareholder logic gives us automatically. It is a deliberate decision to keep the week full, but spend the capacity on the purpose of the work rather than the count of outputs. AI can supplement our knowledge with a really slick system, allowing us to do better work in the same time.
 
-So maybe, instead of A, B, C, D, and E, we do A+, B+, and C. A+ and B+ take two days each, while C takes one day. That uses the same five-day week, but we have spent it improving the work that matters most. Less work, but better work. Hell, we can do A++, B, and C, or any combination. More work is not automatically valuable, and neither is better work. Quality and quantity are competing demands for the same capacity, and quality is justified when it better serves the purpose of the work. Did we really need the others?
+So maybe, instead of **A**, **B**, **C**, **D**, and **E**, we do **A+**, **B+**, and **C**. **A+** and **B+** take two days each, while **C** takes one day. That uses the same five-day week, but we have spent it improving the work that matters most. Less work, but better work. Hell, we can do **A++**, **B**, and **C**, or any combination. More work is not automatically valuable, and neither is better work. Quality and quantity are competing demands for the same capacity, and quality is justified when it better serves the purpose of the work. Did we really need the others?
 
 ## Quality over quantity
 
