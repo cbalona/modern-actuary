@@ -2,7 +2,7 @@
 title: "Projects"
 items:
   - title: "InsuranceAutomata 🔥"
-    href: "https://insurance-automata.com/"
+    href: "https://insurance-automata.pages.dev/"
     description: "Insurance Automata is an interactive application that simulates the spread of fire across a house using a cellular automata model. The app allows users to place objects within a virtual house and observe how a fire might spread under various conditions. It was developed as an entry into the 2023 Hacktuary Challenge, a competition organized by the Casualty Actuarial Society (CAS) to encourage the development of applications that utilise actuarial concepts to solve pressing risk management problems related to property insurance."
   - title: "Reinsurance"
     href: "https://github.com/cbalona/reinsurance"
@@ -19,7 +19,7 @@ items:
 
 A selection of some projects I have worked on over the years.
 
-## [InsuranceAutomata 🔥](https://insurance-automata.com/)
+## [InsuranceAutomata 🔥](https://insurance-automata.pages.dev/)
 
 InsuranceAutomata is an interactive application that simulates the spread of fire across a house using a cellular automata model. The app allows users to place objects within a virtual house and observe how a fire might spread under various conditions. It was developed as an entry into the 2023 Hacktuary Challenge, a competition organized by the Casualty Actuarial Society (CAS) to encourage the development of applications that utilize actuarial concepts to solve pressing risk management problems related to property insurance.
 
