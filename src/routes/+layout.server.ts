@@ -1,5 +1,5 @@
-import type { LayoutServerLoad } from './$types'
-import { PUBLIC_SITE_URL } from '$env/static/public'
+import type { LayoutServerLoad } from "./$types"
+import { PUBLIC_SITE_URL } from "$env/static/public"
 
 export const prerender = true
 

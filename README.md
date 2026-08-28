@@ -85,12 +85,15 @@ bun dev
 
 The site will be available at `http://localhost:5173`.
 
-### Type Checking & Linting
+### Type Checking, Linting & Formatting
 
-We use `svelte-check` for TypeScript validation and ESLint for code style.
+We use `svelte-check` for TypeScript and Svelte validation, ESLint for code-quality rules, and Prettier for formatting.
 
-- **Type check:** `bun check`
-- **Lint and fix:** `bun fix`
+- **Type and Svelte check:** `bun check`
+- **Lint:** `bun lint`
+- **Lint and fix:** `bun lint:fix`
+- **Format:** `bun format`
+- **Check formatting:** `bun format:check`
 
 ## ✍️ Content Workflow
 

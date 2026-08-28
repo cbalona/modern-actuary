@@ -1,23 +1,23 @@
-import type { Image } from 'mdast'
-import type { Plugin } from 'unified'
-import fs from 'node:fs'
-import path from 'node:path'
-import { transformerCopyButton } from '@rehype-pretty/transformers'
-import matter from 'gray-matter'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
-import rehypeSlug from 'rehype-slug'
-import rehypeStringify from 'rehype-stringify'
-import remarkGfm from 'remark-gfm'
-import { remarkAlert } from 'remark-github-blockquote-alert'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
-import { visit } from 'unist-util-visit'
-import * as v from 'valibot'
+import type { Image } from "mdast"
+import type { Plugin } from "unified"
+import fs from "node:fs"
+import path from "node:path"
+import { transformerCopyButton } from "@rehype-pretty/transformers"
+import matter from "gray-matter"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
+import rehypeStringify from "rehype-stringify"
+import remarkGfm from "remark-gfm"
+import { remarkAlert } from "remark-github-blockquote-alert"
+import remarkParse from "remark-parse"
+import remarkRehype from "remark-rehype"
+import { unified } from "unified"
+import { visit } from "unist-util-visit"
+import * as v from "valibot"
 
-const JOURNAL_DIR = 'static/content/journal'
-const PAGES_DIR = 'static/content/pages'
+const JOURNAL_DIR = "static/content/journal"
+const PAGES_DIR = "static/content/pages"
 
 /**
  * A custom Remark plugin to rewrite relative image paths.
@@ -26,20 +26,15 @@ const PAGES_DIR = 'static/content/pages'
  */
 const remarkRewriteImagePath: Plugin<[{ slug: string }]> = (options) => {
   const slug = options?.slug
-  if (!slug)
-    return
+  if (!slug) return
 
   return (tree) => {
-    visit(tree, 'image', (node: Image) => {
+    visit(tree, "image", (node: Image) => {
       // Only transform relative paths (those not starting with `/` or `http`).
-      if (node.url.startsWith('./')) {
+      if (node.url.startsWith("./")) {
         // Construct the new path.
-        const newPath = path.join(
-          '/content/journal',
-          options.slug,
-          node.url.replace('./', ''),
-        )
-        node.url = newPath.replace(/\\/g, '/') // Ensure forward slashes for URLs.
+        const newPath = path.join("/content/journal", options.slug, node.url.replace("./", ""))
+        node.url = newPath.replace(/\\/g, "/") // Ensure forward slashes for URLs.
       }
     })
   }
@@ -49,10 +44,7 @@ const remarkRewriteImagePath: Plugin<[{ slug: string }]> = (options) => {
  * Creates a unified processor for simple note content (e.g., deprecation notes).
  * @returns {import('unified').Processor} A configured unified processor instance.
  */
-const noteProcessor = unified()
-  .use(remarkParse)
-  .use(remarkRehype)
-  .use(rehypeStringify)
+const noteProcessor = unified().use(remarkParse).use(remarkRehype).use(rehypeStringify)
 
 /**
  * Creates a unified processor to transform markdown into HTML.
@@ -67,13 +59,11 @@ function createProcessor(slug: string) {
     .use(remarkRewriteImagePath, { slug })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
+    .use(rehypeAutolinkHeadings, { behavior: "wrap" })
     .use(rehypePrettyCode, {
-      theme: 'rose-pine-dawn',
+      theme: "rose-pine-dawn",
       keepBackground: false,
-      transformers: [
-        transformerCopyButton({ visibility: 'hover', feedbackDuration: 3_000 }),
-      ],
+      transformers: [transformerCopyButton({ visibility: "hover", feedbackDuration: 3_000 })],
     })
     .use(rehypeStringify, { allowDangerousHtml: true })
 }
@@ -82,7 +72,7 @@ function createProcessor(slug: string) {
 const changelogEntrySchema = v.object({
   date: v.pipe(
     v.string(),
-    v.transform(s => new Date(s)),
+    v.transform((s) => new Date(s)),
     v.date(),
   ),
   description: v.pipe(v.string(), v.trim()),
@@ -93,14 +83,14 @@ export const journalEntryMetadataSchema = v.object({
   description: v.pipe(v.string(), v.trim()),
   date: v.pipe(
     v.string(),
-    v.transform(s => new Date(s)),
+    v.transform((s) => new Date(s)),
     v.date(),
   ),
   image: v.optional(v.pipe(v.string(), v.trim())),
   updated: v.optional(
     v.pipe(
       v.string(),
-      v.transform(s => new Date(s)),
+      v.transform((s) => new Date(s)),
       v.date(),
     ),
   ),
@@ -111,9 +101,7 @@ export const journalEntryMetadataSchema = v.object({
   deprecation_note: v.optional(v.pipe(v.string(), v.trim())),
 })
 
-export type JournalEntryMetadata = v.InferOutput<
-	typeof journalEntryMetadataSchema
->
+export type JournalEntryMetadata = v.InferOutput<typeof journalEntryMetadataSchema>
 
 export interface JournalEntry {
   slug: string
@@ -129,24 +117,21 @@ export interface JournalEntry {
  * @param {string} slug - The slug of the journal entry.
  * @returns {Promise<JournalEntry>} The processed journal entry object.
  */
-async function compileJournalEntryFromFile(
-  filePath: string,
-  slug: string,
-): Promise<JournalEntry> {
-  const rawContent = fs.readFileSync(filePath, 'utf-8')
+async function compileJournalEntryFromFile(filePath: string, slug: string): Promise<JournalEntry> {
+  const rawContent = fs.readFileSync(filePath, "utf-8")
   const { data, content } = matter(rawContent)
 
   const metadata = v.parse(journalEntryMetadataSchema, data)
 
   // Normalise relative image paths in frontmatter
-  if (metadata.image?.startsWith('./')) {
-    metadata.image = `/content/journal/${slug}/${metadata.image.replace('./', '')}`
+  if (metadata.image?.startsWith("./")) {
+    metadata.image = `/content/journal/${slug}/${metadata.image.replace("./", "")}`
   }
 
   // Derive the 'updated' date from the changelog if it exists.
   if (metadata.changelog && metadata.changelog.length > 0) {
     const latestChangelogDate = new Date(
-      Math.max(...metadata.changelog.map(entry => entry.date.getTime())),
+      Math.max(...metadata.changelog.map((entry) => entry.date.getTime())),
     )
     metadata.updated = latestChangelogDate
   }
@@ -184,7 +169,7 @@ async function getAllJournalEntries(): Promise<JournalEntry[]> {
   const entries = await Promise.all(
     postDirs.map(async (dirName: string) => {
       const dirPath = path.join(JOURNAL_DIR, dirName)
-      const filePath = path.join(dirPath, 'index.md')
+      const filePath = path.join(dirPath, "index.md")
 
       // Check if it's a directory and contains an index.md file.
       const isDirectory = fs.statSync(dirPath).isDirectory()
@@ -214,12 +199,10 @@ async function getAllJournalEntries(): Promise<JournalEntry[]> {
 export async function getPublishedJournalEntries(): Promise<JournalEntry[]> {
   const entries = await getAllJournalEntries()
   return entries
-    .filter(entry => !entry.metadata.archived)
+    .filter((entry) => !entry.metadata.archived)
     .sort((a, b) => {
-      if (a.metadata.pinned && !b.metadata.pinned)
-        return -1
-      if (!a.metadata.pinned && b.metadata.pinned)
-        return 1
+      if (a.metadata.pinned && !b.metadata.pinned) return -1
+      if (!a.metadata.pinned && b.metadata.pinned) return 1
       return b.metadata.date.getTime() - a.metadata.date.getTime()
     })
 }
@@ -231,7 +214,7 @@ export async function getPublishedJournalEntries(): Promise<JournalEntry[]> {
 export async function getArchivedJournalEntries(): Promise<JournalEntry[]> {
   const entries = await getAllJournalEntries()
   return entries
-    .filter(entry => entry.metadata.archived)
+    .filter((entry) => entry.metadata.archived)
     .sort((a, b) => b.metadata.date.getTime() - a.metadata.date.getTime())
 }
 
@@ -243,12 +226,10 @@ let entriesBySlug: Map<string, JournalEntry> | null = null
  * @param {string} slug - The slug of the journal entry to retrieve.
  * @returns {Promise<JournalEntry | undefined>} The journal entry, or undefined if not found.
  */
-export async function getJournalEntryBySlug(
-  slug: string,
-): Promise<JournalEntry | undefined> {
+export async function getJournalEntryBySlug(slug: string): Promise<JournalEntry | undefined> {
   if (!entriesBySlug) {
     const allEntries = await getAllJournalEntries()
-    entriesBySlug = new Map(allEntries.map(p => [p.slug, p]))
+    entriesBySlug = new Map(allEntries.map((p) => [p.slug, p]))
   }
   return entriesBySlug.get(slug)
 }
@@ -276,7 +257,7 @@ export async function getPage(slug: string): Promise<Page | undefined> {
     return undefined
   }
 
-  const rawContent = fs.readFileSync(filePath, 'utf-8')
+  const rawContent = fs.readFileSync(filePath, "utf-8")
   const { data, content } = matter(rawContent)
 
   const metadata = v.parse(pageMetadataSchema, data)

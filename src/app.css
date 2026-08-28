@@ -1,12 +1,12 @@
 /* == Setup & Config == */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,400;1,400&display=swap");
 
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-serif: 'Lora', serif;
-  --font-sans: 'Karla', sans-serif;
+  --font-serif: "Lora", serif;
+  --font-sans: "Karla", sans-serif;
 
   --color-paper: #f8f4e8;
   --color-ink: #3a3a3a;
