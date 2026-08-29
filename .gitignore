@@ -28,5 +28,12 @@ coverage/
 .DS_Store
 Thumbs.db
 
+# Test artifacts
+playwright-report/
+test-results/
+
 # Miscellaneous
 llm/
+
+# Local task notes
+todo.md
