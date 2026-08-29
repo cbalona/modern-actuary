@@ -29,8 +29,8 @@ This site is a static site generated using **SvelteKit** and modern web tools.
   [rehype](https://github.com/rehypejs/rehype))
 - **Validation:** [Valibot](https://valibot.dev/) for strict frontmatter schema
   validation
-- **Tooling:** [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config) for unified linting and formatting
-- **Package Manager:** [pnpm](https://pnpm.io/)
+- **Tooling:** [ESLint](https://eslint.org/) with TypeScript ESLint, `eslint-plugin-svelte`, and [Prettier](https://prettier.io/)
+- **Package Manager:** [Bun](https://bun.sh/), managed through [mise](https://mise.jdx.dev/)
 
 ## 📂 Project Structure
 
@@ -45,7 +45,7 @@ This site is a static site generated using **SvelteKit** and modern web tools.
 │       └── pages/             # Static pages (About, Projects)
 ├── build.sh                   # Custom build script handling environment URLs
 ├── eslint.config.js           # Linter and formatter configuration
-└── mise.toml                  # Project tool versions
+└── mise.toml                  # Project tool versions and tasks
 ```
 
 ## 🛠️ Local Development
@@ -69,10 +69,11 @@ This site is a static site generated using **SvelteKit** and modern web tools.
     mise install
     ```
 
-3. Install dependencies:
+3. Install dependencies and the Playwright Chromium browser:
 
     ```bash
     bun install
+    bunx playwright install chromium
     ```
 
 ### Running the Dev Server
@@ -80,20 +81,31 @@ This site is a static site generated using **SvelteKit** and modern web tools.
 Start the development server with hot module replacement:
 
 ```bash
-bun dev
+bun run dev
 ```
 
 The site will be available at `http://localhost:5173`.
 
-### Type Checking, Linting & Formatting
+### Verification
 
-We use `svelte-check` for TypeScript and Svelte validation, ESLint for code-quality rules, and Prettier for formatting.
+Run the complete local verification suite with the same command used by CI:
 
-- **Type and Svelte check:** `bun check`
-- **Lint:** `bun lint`
-- **Lint and fix:** `bun lint:fix`
-- **Format:** `bun format`
-- **Check formatting:** `bun format:check`
+```bash
+mise run verify
+```
+
+This runs the type and Svelte checks, linting, formatting validation, unit tests, browser tests, and the production build. The browser tests use Chromium.
+
+For focused feedback, run individual checks with Bun:
+
+- **Type and Svelte check:** `bun run check`
+- **Lint:** `bun run lint`
+- **Lint and fix:** `bun run lint:fix`
+- **Format:** `bun run format`
+- **Check formatting:** `bun run format:check`
+- **Unit tests:** `bun run test`
+- **Browser tests:** `bun run test:browser`
+- **All tests:** `bun run test:all`
 
 ## ✍️ Content Workflow
 
@@ -145,7 +157,7 @@ The site is configured for **Static Site Generation (SSG)**.
 To build the production version:
 
 ```bash
-bun build
+bun run build
 ```
 
 ### Build Script
