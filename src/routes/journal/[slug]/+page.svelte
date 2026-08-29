@@ -4,7 +4,7 @@
 
   const { data }: { data: PageData } = $props()
 
-  const canonicalUrl = `${data.siteUrl}/journal/${data.post.slug}`
+  const canonicalUrl = $derived(`${data.siteUrl}/journal/${data.post.slug}`)
 </script>
 
 <svelte:head>
